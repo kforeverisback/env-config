@@ -1,0 +1,55 @@
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = nvim
+    pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
+[user]
+    name = Kushal Azim Ekram
+    email = mekram@microsoft.com
+    mail = mekram@microsoft.com
+#[commit]
+#   template = /Users/mekram/.stCommitMsg
+[alias]
+    #Basic Commands
+    cp = cherry-pick
+    st = status -uno
+    s = status -s -uno
+    br = branch 
+    diff = diff --word-diff
+    dc = diff --cached
+    co = checkout
+    cm = commit
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    #History
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+    adog = log --all --decorate --oneline --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+    #File Log
+    filelog = log -u
+    fl = log -u
+    #List all Aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    alias = "!git config -l | grep alias | cut -c 7-"
+    #Search in Git Files
+    f = "!git ls-files | grep -i"
+    chardiff = "diff --word-diff-regex=."
+    worddiff = "diff --word-diff"
+    rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[credential]
+	helper = cache
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+[init]
+	defaultBranch = main
