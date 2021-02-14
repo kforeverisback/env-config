@@ -123,10 +123,10 @@ bindkey \^U backward-kill-line
 
 _k_help+="$GOPATH/bin to path"
 _k_help+="FileMan: ranger(terminal), thunar"
-_k_help+="ImgView:viewnior, VDO:vlc,mpv, Aud:audacious"
+_k_help+="ImgView:viewnior, VDO:vlc,mpv Aud:audacious"
 
 # Kushal
-# Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias_k
+# Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 hash -r
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
 _k_help+="We are using Starship for Themeing!"
