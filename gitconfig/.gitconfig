@@ -1,7 +1,11 @@
 [core]
     excludesfile = ~/.gitignore_global
     editor = nvim
-    pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
+    #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
+    whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[pull]
+    rebase = false
 [user]
     name = Kushal Azim Ekram
     email = mekram@microsoft.com
@@ -13,8 +17,9 @@
     cp = cherry-pick
     st = status -uno
     s = status -s -uno
-    br = branch 
-    diff = diff --word-diff
+    br = branch
+    dw = diff --word-diff
+    d = diff
     dc = diff --cached
     co = checkout
     cm = commit
@@ -43,7 +48,7 @@
     process = git-lfs filter-process
     required = true
 [credential]
-	helper = cache
+	helper = cache --timeout=7200
 [color]
     diff = auto
     status = auto
@@ -51,5 +56,13 @@
     interactive = auto
     ui = true
     pager = true
+[delta]
+    plus-color = "#012800"
+    minus-color = "#340001"
+    syntax-theme = Monokai Extended
+    side-by-side = true
+    line-numbers = true
+[interactive]
+    diffFilter = delta --color-only
 [init]
 	defaultBranch = main
