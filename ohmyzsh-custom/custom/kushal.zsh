@@ -1,20 +1,17 @@
-# Zsh Confir
+# Zsh Config
 #
 # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-autoload -U select-word-style
-select-word-style bash
+#autoload -U select-word-style
+#select-word-style bash
 # Most flexible solution of
-#WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 export _k_custom_alias_k=()
 export _k_custom_func=()
 export _k_help=()
 # ------ Alias -------
 alias_k() { _k_custom_alias_k+="$@"; alias "$@" }
-#alias_k cp='cp -iv'                           # Preferred 'cp' implementation
-alias_k cp='cp_adv_mod_8.32 -gi'             # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
-alias_k mv='mv_adv_mod_8.32 -gi'             # Built 'mv' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
-alias_k mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias_k mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
 # Check whether --color=auto is available then add --color=auto or add -G
 ls --color=auto &> /dev/null && alias_k ls='ls --color=auto' || alias_k ls='ls -G'
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
@@ -33,8 +30,6 @@ alias_k grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
 #alias_k cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 _k_custom_func+="mcd"
-alias_k brewup='brew update; brew upgrade; brew prune; brew cleanup; brew doctor'
-alias_k brewclean='brew prune; brew cleanup; brew doctor'
 alias_k cls=clear
 alias_k llrt='ll -lrt'
 alias_k pwdln='pwd -P'
@@ -45,6 +40,7 @@ alias_k dkr='docker'
 alias_k d=docker
 alias_k dokcer='docker'
 alias_k kctl='kubectl'
+alias_k k='kubectl'
 
 myalias() {
     echo "Custom Aliases:"
@@ -119,7 +115,8 @@ export KUBE_EDITOR="vi"
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-bindkey \^U backward-kill-line
+bindkey '^U' backward-kill-line
+bindkey '^Y' yank
 
 _k_help+="$GOPATH/bin to path"
 _k_help+="FileMan: ranger(terminal), thunar"
