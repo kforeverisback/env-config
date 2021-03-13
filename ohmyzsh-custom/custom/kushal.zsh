@@ -1,10 +1,10 @@
 # Zsh Config
 #
 # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-#autoload -U select-word-style
-#select-word-style bash
+autoload -U select-word-style
+select-word-style bash
 # Most flexible solution of
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+#WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 export _k_custom_alias_k=()
 export _k_custom_func=()
@@ -12,6 +12,9 @@ export _k_help=()
 # ------ Alias -------
 alias_k() { _k_custom_alias_k+="$@"; alias "$@" }
 alias_k mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
+#alias_k cp='cp -iv'                         # Preferred 'cp' implementation
+alias_k cp='cp_adv_mod_8.32 -gi'             # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
+alias_k mv='mv_adv_mod_8.32 -gi'             # Built 'mv' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
 # Check whether --color=auto is available then add --color=auto or add -G
 ls --color=auto &> /dev/null && alias_k ls='ls --color=auto' || alias_k ls='ls -G'
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
@@ -29,6 +32,12 @@ alias_k grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
 #alias_k cic='bind "set completion-ignore-case On";bind "set show-all-if-ambiguous on"'  # cic:          Make tab-completion case-insensitive
 #alias_k cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+# If WSL2
+if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
+    # In WSL2 Microsoft Kernel
+    alias_k wsl-ip="ip a show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
+    alias_k win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
+fi
 _k_custom_func+="mcd"
 alias_k cls=clear
 alias_k llrt='ll -lrt'
@@ -41,6 +50,7 @@ alias_k d=docker
 alias_k dokcer='docker'
 alias_k kctl='kubectl'
 alias_k k='kubectl'
+alias_k fd='fd -H'
 
 myalias() {
     echo "Custom Aliases:"
@@ -118,15 +128,19 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
-_k_help+="$GOPATH/bin to path"
-_k_help+="FileMan: ranger(terminal), thunar"
-_k_help+="ImgView:viewnior, VDO:vlc,mpv Aud:audacious"
 
 # Kushal
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
+eval "$(starship init zsh)"
 hash -r
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
 _k_help+="We are using Starship for Themeing!"
+_k_help+="Useful prog: trickle"
+_k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
+_k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
+
+_k_help+="$GOPATH/bin to path"
+_k_help+="FileMan: ranger(terminal)"
 myhelp() {
     _k_custom_func+="${funcstack[1]}"
     printf '%s\n' "${_k_help[@]}"
@@ -144,3 +158,4 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude ".git" . "$1"
 }
+
