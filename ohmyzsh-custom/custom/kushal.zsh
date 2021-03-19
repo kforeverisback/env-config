@@ -7,7 +7,6 @@ select-word-style bash
 #WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 export _k_custom_alias_k=()
-export _k_custom_func=()
 export _k_help=()
 # ------ Alias -------
 alias_k() { _k_custom_alias_k+="$@"; alias "$@" }
@@ -31,20 +30,20 @@ alias_k grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
 # In mac auto completion is a little differnt
 #alias_k cic='bind "set completion-ignore-case On";bind "set show-all-if-ambiguous on"'  # cic:          Make tab-completion case-insensitive
 #alias_k cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
-mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+mcd () {mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 # If WSL2
 if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
     # In WSL2 Microsoft Kernel
     alias_k wsl-ip="ip a show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
     alias_k win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
 fi
-_k_custom_func+="mcd"
 alias_k cls=clear
 alias_k llrt='ll -lrt'
 alias_k pwdln='pwd -P'
 alias_k vim='nvim'
 alias_k e='nvim'
 alias_k vi='nvim'
+alias_k vimdiff='nvim -d'
 alias_k dkr='docker'
 alias_k d=docker
 alias_k dokcer='docker'
@@ -55,7 +54,6 @@ alias_k fd='fd -H'
 myalias() {
     echo "Custom Aliases:"
     printf '%s\n' "${_k_custom_alias_k[@]}"
-    _k_custom_func+="${funcstack[1]}"
     _k_help+="Check alias: myalias"
 }
 # ------ Alias -------
@@ -68,21 +66,19 @@ setGitProxy () {
     git config --global http.proxy http://proxy-chain.XXXX.com:911 && \
     git config --global https.proxy https://proxy-chain.XXXX.com:912 && \
     git config --global core.sshCommand "ssh -i ~/.ssh/bitbucket-key -o ProxyCommand='nc -X 5 -x proxy-us.XXXX.com:1080 %h %p' -F /dev/null"
-    _k_custom_func+="${funcstack[1]}"
 }
 resetGitProxy () {
     git config --global --unset http.proxy && \
     git config --global --unset https.proxy && \
     git config --global --unset core.sshCommand
-    _k_custom_func+="${funcstack[1]}" 
 }
-sshproxy () { ssh -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@";_k_custom_func+="${funcstack[1]}" }
-scpproxy () { scp -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@";_k_custom_func+="${funcstack[1]}" }
+sshproxy () { ssh -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
+scpproxy () { scp -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
 
-scpjump() { local host=$(getHost "$@"); echo $host; scp -o ProxyCommand="ssh jumpbox nc $host 22" "$@";_k_custom_func+="${funcstack[1]}" }
-sshjump() { ssh -X -J jumpbox "$@"; _k_custom_func+="${funcstack[1]}" }
+scpjump() { local host=$(getHost "$@"); echo $host; scp -o ProxyCommand="ssh jumpbox nc $host 22" "$@"; }
+sshjump() { ssh -X -J jumpbox "$@";  }
 
-scpjumpmbs() { local host=$(getHost "$@") && scp -o ProxyCommand="ssh jumpbox-mbs nc $host 22" "$@";_k_custom_func+="${funcstack[1]}" }
+scpjumpmbs() { local host=$(getHost "$@") && scp -o ProxyCommand="ssh jumpbox-mbs nc $host 22" "$@"; }
 sshjumpmbs() { ssh -X -J jumpbox-mbs "$@"; }
 
 export PROXY_PRFX="(XXXX)"
@@ -94,7 +90,6 @@ setProxy() {
     #export PS1="$PROXY_PRFX$PS1";
     # ZSH
     export PROMPT="$PROXY_PRFX $PROMPT";
-    _k_custom_func+="${funcstack[1]}"
 }
 resetProxy() {
     unset HTTPS_PROXY;unset HTTP_PROXY;unset http_proxy;unset https_proxy;unset ALL_PROXY;
@@ -102,7 +97,6 @@ resetProxy() {
     #export PS1="${PS1/$PROXY_PRFX/}";
     # ZSH
     export PROMPT=${PROMPT/${PROXY_PRFX}/}
-    _k_custom_func+="${funcstack[1]}"
 }
 restartNet() {
     if [ $# -eq 1 ]; then
@@ -111,7 +105,6 @@ restartNet() {
     else
         echo "restartNet NetworkAdapterName"
     fi
-    _k_custom_func+="${funcstack[1]}"
 }
 # Go development
 # Kushal: Instead of "brew --prefix golang" we are replacing this command with output of "brew --prefix golang"
@@ -120,7 +113,7 @@ export GOPATH="${HOME}/Go"
 export GOROOT="/usr/lib/go/"
 #test -d "${GOPATH}" || mkdir "${GOPATH}"
 #test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-export PATH="$PATH:${GOPATH}/bin/:/home/kushal/.bin"
+export PATH="$PATH:${GOPATH}/bin/:/home/kushal/.local/bin"
 export KUBE_EDITOR="vi"
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
@@ -135,14 +128,10 @@ eval "$(starship init zsh)"
 hash -r
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
 _k_help+="We are using Starship for Themeing!"
-_k_help+="Useful prog: trickle"
-_k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
-_k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 
 _k_help+="$GOPATH/bin to path"
 _k_help+="FileMan: ranger(terminal)"
 myhelp() {
-    _k_custom_func+="${funcstack[1]}"
     printf '%s\n' "${_k_help[@]}"
 }
 echo "Check myhelp for initialization notice"
