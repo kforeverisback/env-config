@@ -6,56 +6,48 @@ select-word-style bash
 # Most flexible solution of
 #WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-export _k_custom_alias_k=()
 export _k_help=()
 # ------ Alias -------
-alias_k() { _k_custom_alias_k+="$@"; alias "$@" }
-alias_k mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
-#alias_k cp='cp -iv'                         # Preferred 'cp' implementation
-alias_k cp='cp_adv_mod_8.32 -gi'             # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
-alias_k mv='mv_adv_mod_8.32 -gi'             # Built 'mv' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
+alias mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
+#alias cp='cp -iv'                         # Preferred 'cp' implementation
+alias cp='cp_adv_mod_8.32 -gi'             # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
+alias mv='mv_adv_mod_8.32 -gi'             # Built 'mv' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
 # Check whether --color=auto is available then add --color=auto or add -G
-ls --color=auto &> /dev/null && alias_k ls='ls --color=auto' || alias_k ls='ls -G'
+ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
-alias_k ll='ls -FlAhp --color=auto'                       # Preferred 'ls' implementation
-alias_k less='less -FSRXc'                    # Preferred 'less' implementation
+alias ll='ls -FlAhp --color=auto'                       # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
 #cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
-alias_k c='clear'                             # c:            Clear terminal display
-#alias_k which='type -all'                     # which:        Find executables
-alias_k path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-alias_k show_options='shopt'                  # Show_options: display bash options settings
-alias_k fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias_k rm="echo Use del/trash, or the full path i.e. '/bin/rm'"
-alias_k grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
+alias c='clear'                             # c:            Clear terminal display
+#alias which='type -all'                     # which:        Find executables
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias show_options='shopt'                  # Show_options: display bash options settings
+alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+alias rm="echo Use del/trash, or the full path i.e. '/bin/rm'"
+alias grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
 # In mac auto completion is a little differnt
-#alias_k cic='bind "set completion-ignore-case On";bind "set show-all-if-ambiguous on"'  # cic:          Make tab-completion case-insensitive
-#alias_k cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+#alias cic='bind "set completion-ignore-case On";bind "set show-all-if-ambiguous on"'  # cic:          Make tab-completion case-insensitive
+#alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () {mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 # If WSL2
 if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
     # In WSL2 Microsoft Kernel
-    alias_k wsl-ip="ip a show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
-    alias_k win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
+    alias wsl-ip="ip a show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
+    alias win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
 fi
-alias_k cls=clear
-alias_k llrt='ll -lrt'
-alias_k pwdln='pwd -P'
-alias_k vim='nvim'
-alias_k e='nvim'
-alias_k vi='nvim'
-alias_k vimdiff='nvim -d'
-alias_k dkr='docker'
-alias_k d=docker
-alias_k dokcer='docker'
-alias_k kctl='kubectl'
-alias_k k='kubectl'
-alias_k fd='fd -H'
-
-myalias() {
-    echo "Custom Aliases:"
-    printf '%s\n' "${_k_custom_alias_k[@]}"
-    _k_help+="Check alias: myalias"
-}
+alias cls=clear
+alias llrt='ll -lrt'
+alias pwdln='pwd -P'
+alias vim='nvim'
+alias e='nvim'
+alias vi='nvim'
+alias vimdiff='nvim -d'
+alias dkr='docker'
+alias d=docker
+alias dokcer='docker'
+alias kctl='kubectl'
+alias k='kubectl'
+alias fd='fd -H'
 # ------ Alias -------
 
 #[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
