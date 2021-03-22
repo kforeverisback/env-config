@@ -10,12 +10,14 @@ export _k_help=()
 # ------ Alias -------
 alias mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
 #alias cp='cp -iv'                         # Preferred 'cp' implementation
-alias cp='cp_adv_mod_8.32 -gi'             # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
-alias mv='mv_adv_mod_8.32 -gi'             # Built 'mv' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
 # Check whether --color=auto is available then add --color=auto or add -G
-ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
+if [[ $(alias ls) == *"exa"* ]] # We want to use exa instead of standard ls
+then
+  # If not found then lets use this
+  ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
+fi
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
-alias ll='ls -FlAhp --color=auto'                       # Preferred 'ls' implementation
+alias ll='ls -Flh'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 #cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias c='clear'                             # c:            Clear terminal display
@@ -23,8 +25,6 @@ alias c='clear'                             # c:            Clear terminal displ
 alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
 alias show_options='shopt'                  # Show_options: display bash options settings
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias rm="echo Use del/trash, or the full path i.e. '/bin/rm'"
-alias grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
 # In mac auto completion is a little differnt
 #alias cic='bind "set completion-ignore-case On";bind "set show-all-if-ambiguous on"'  # cic:          Make tab-completion case-insensitive
 #alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
@@ -36,18 +36,12 @@ if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
     alias win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
 fi
 alias cls=clear
-alias llrt='ll -lrt'
 alias pwdln='pwd -P'
-alias vim='nvim'
-alias e='nvim'
-alias vi='nvim'
-alias vimdiff='nvim -d'
 alias dkr='docker'
 alias d=docker
 alias dokcer='docker'
 alias kctl='kubectl'
 alias k='kubectl'
-alias fd='fd -H'
 # ------ Alias -------
 
 #[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
@@ -113,11 +107,9 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
 
-
-# Kushal
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
+# hash -r
 eval "$(starship init zsh)"
-hash -r
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
 _k_help+="We are using Starship for Themeing!"
 
@@ -127,16 +119,4 @@ myhelp() {
     printf '%s\n' "${_k_help[@]}"
 }
 echo "Check myhelp for initialization notice"
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-# command for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" . "$1"
-}
 
