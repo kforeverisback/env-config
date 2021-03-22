@@ -99,7 +99,7 @@ export GOPATH="${HOME}/Go"
 export GOROOT="/usr/lib/go/"
 #test -d "${GOPATH}" || mkdir "${GOPATH}"
 #test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-export PATH="$PATH:${GOPATH}/bin/:/home/kushal/.local/bin"
+export PATH="$PATH:${GOPATH}/bin/:$HOME/.local/bin"
 export KUBE_EDITOR="vi"
 
 zstyle ':completion:*:*:docker:*' option-stacking yes
