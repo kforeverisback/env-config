@@ -1,17 +1,13 @@
 [core]
     excludesfile = ~/.gitignore_global
-    editor = nvim
+    editor = vim
     #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
     pager = delta
     whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[include]
+    path = ~/.git-user-info
 [pull]
     rebase = false
-[user]
-    name = Kushal Azim Ekram
-    email = mekram@microsoft.com
-    mail = mekram@microsoft.com
-#[commit]
-#   template = /Users/mekram/.stCommitMsg
 [alias]
     #Basic Commands
     cp = cherry-pick
