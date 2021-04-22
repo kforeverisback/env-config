@@ -1,0 +1,50 @@
+#theme = "solarized-dark"
+theme = "slick"
+icons = "awesome5"
+#icons = "material"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mup}%"
+format_swap = "{SUp}%"
+
+[[block]]
+block = "cpu"
+#format = "CPU: {utilization}%"
+interval = 1
+
+[[block]]
+block = "load"
+interval = 5
+format = "{1m}"
+
+[[block]]
+block = "net"
+device = "wlp4s0"
+format = "{ssid} {signal_strength} {ip} {speed_down} {speed_up}"
+interval = 5
+use_bits = false
+
+[[block]]
+block = "nvidia_gpu"
+label = "960M"
+show_memory = true
+show_clocks = true
+interval = 5
+
+[[block]]
+block = "time"
+interval = 60
+format = "%a %d/%m %R"
+
