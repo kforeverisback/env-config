@@ -22,6 +22,9 @@ update_keychain
 source /etc/bash_completion.d/azure-cli
 # Source Github ZSH Completion
 source ~/.local/share/github_zsh_completion.zsh
+if type "kubectl" > /dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 update_clock() {
     echo '[ROOT] Updating clock (sudo hwclock --hctosys)'

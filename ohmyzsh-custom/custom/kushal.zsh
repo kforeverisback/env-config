@@ -109,7 +109,6 @@ bindkey '^Y' yank
 
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
-eval "$(starship init zsh)"
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
 _k_help+="We are using Starship for Themeing!"
 
