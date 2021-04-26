@@ -1,0 +1,3 @@
+- Install i3status-rs package (or download and add to PATH)
+- Copy `.config/i3config-rs` folder to `.config` folder 
+- Replace the `.i3` folder in `$HOME`

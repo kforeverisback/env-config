@@ -12,9 +12,16 @@ export DISPLAY=$(win-ip):0
 export LIBGL_ALWAYS_INDIRECT=1
 
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
+# https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
 update_keychain() {
-    /usr/bin/keychain -q --nogui --timeout 180 $HOME/.ssh/id_rsa $HOME/.ssh/github-key-ms
-    source $HOME/.keychain/$HOST-sh
+    if ! command -v keychain &> /dev/null; then
+      echo "'keychain' not found in system."
+    else
+      echo 'Starting ssh-agent via keychain'
+      /usr/bin/keychain -q --nogui --timeout 180 $HOME/.ssh/id_rsa $HOME/.ssh/github-key-ms
+      source $HOME/.keychain/$HOST-sh
+      _k_help+="Use update_keychain to add keys to ssh-agent"
+    fi
 }
 update_keychain
 

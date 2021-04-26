@@ -35,6 +35,7 @@ if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
     alias wsl-ip="ip a show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'"
     alias win-ip='cat /etc/resolv.conf | grep nameserver | awk "{print \$2}"'
 fi
+alias cd..='cd ..'
 alias cls=clear
 alias pwdln='pwd -P'
 alias dkr='docker'
