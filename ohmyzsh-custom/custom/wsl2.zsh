@@ -3,6 +3,8 @@ _k_help+="Useful prog: trickle"
 _k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
 _k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 
+alias rgv='rg -v "rg " | rg'
+
 export GOROOT="/usr/local/go/"
 export PATH="$PATH:${GOROOT}/bin:$HOME/.dotnet/tools/:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin/"
 export KUBE_EDITOR="vi"
