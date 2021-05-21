@@ -20,13 +20,14 @@ alert = 10.0
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+format_mem = "{mem_total_used_percents}"
+format_swap = "{swap_used_percents}"
+clickable = true
 
 [[block]]
 block = "cpu"
 #format = "CPU: {utilization}%"
-interval = 1
+interval = 5
 
 #[[block]]
 #block = "load"
@@ -45,7 +46,7 @@ device = "wlp4s0"
 #format = "{ssid} {signal_strength} {ip} {speed_down} {speed_up}"
 format = "{ssid} {signal_strength} {speed_down} {speed_up}"
 interval = 5
-use_bits = false
+#use_bits = false
 
 [[block]]
 block = "nvidia_gpu"
