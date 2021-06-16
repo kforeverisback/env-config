@@ -58,7 +58,7 @@ interval = 5
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d/%m %R"
+format = "%a %d/%m %I:%M %P"
 
 [[block]]
 block = "sound"

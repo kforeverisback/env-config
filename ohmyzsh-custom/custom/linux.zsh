@@ -11,4 +11,3 @@ update_keychain() {
     fi
 }
 _k_help+="Use update_keychain to add keys to ssh-agent"
-update_keychain
