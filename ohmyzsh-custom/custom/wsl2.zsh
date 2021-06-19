@@ -21,8 +21,7 @@ update_keychain() {
   else
     timeout=180 # Default
     [[ -z "$1" ]] || timeout=$1
-    echo 'Starting ssh-agent via keychain'
-    echo SSH-Agent timeout: ${timeout} minute(s).
+    echo "Starting ssh-agent with ${timeout}m timeout via keychain"
     #if [[ $(pgrep -a ssh-agent | sed 's/^.*-t //g') -ne $(( timeout * 60 )) ]];
     #then
     #  keychain -q -k all
