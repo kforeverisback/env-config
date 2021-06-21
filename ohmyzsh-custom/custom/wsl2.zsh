@@ -3,8 +3,6 @@ _k_help+="Useful prog: trickle"
 _k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
 _k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 
-alias rgv='rg -v "rg " | rg'
-
 export GOROOT="/usr/local/go/"
 export PATH="$PATH:${GOROOT}/bin:$HOME/.dotnet/tools/:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin/"
 export KUBE_EDITOR="vi"
@@ -22,10 +20,10 @@ update_keychain() {
     timeout=180 # Default
     [[ -z "$1" ]] || timeout=$1
     echo "Starting ssh-agent with ${timeout}m timeout via keychain"
-    #if [[ $(pgrep -a ssh-agent | sed 's/^.*-t //g') -ne $(( timeout * 60 )) ]];
-    #then
-    #  keychain -q -k all
-    #fi
+    if [[ $(pgrep -a ssh-agent | sed 's/^.*-t //g') -ne $(( timeout * 60 )) ]];
+    then
+      keychain -q -k all
+    fi
     keychain -q --nogui --timeout ${timeout} $HOME/.ssh/id_rsa $HOME/.ssh/github-key-ms
     source $HOME/.keychain/$HOST-sh
   fi
