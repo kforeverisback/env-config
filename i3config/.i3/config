@@ -337,9 +337,10 @@ bar {
 	status_command i3status-rs /home/kushal/.config/i3status-rust/config.toml
 	position bottom
 
+## https://www.reddit.com/r/i3wm/comments/5qopxp/helpplease_help_me_switch_which_monitor_the_app/
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
+tray_output primary
+# tray_output eDP1
 
 	bindsym button4 nop
 	bindsym button5 nop
