@@ -26,5 +26,6 @@ alias du='dust' # https://github.com/bootandy/dust
 alias cloc='tokei'
 alias bench='hyperfine'
 alias q='pueue'
+alias rgv='rg -v "rg " | rg'
 _k_help+='Added Rusted tools:'
 _k_help+='    fd, bat, exa, procs, btm, sd, dust, toeki, hyperfine, pueue, git-delta'
