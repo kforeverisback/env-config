@@ -1,0 +1,38 @@
+
+[character]
+error_symbol = "[✖](bold red)"
+
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+
+[[battery.display]]
+threshold = 15
+style = "bold red"
+
+[directory]
+truncation_length = 5
+#format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[docker_context]
+disabled = false
+only_with_files = true
+
+[git_status]
+conflicted = "⚔️ "
+ahead = "🏎️💨 ×${count} "
+behind = "🐢 ×${count} "
+diverged = "🔱 🏎️💨 ×${ahead_count} 🐢 ×${behind_count} "
+#untracked = "🛤️  ×${count}"
+#stashed = "📦 "
+modified = "📝 ×${count} "
+#staged = "🗃️  ×${count}"
+#renamed = "📛 ×${count}"
+#deleted = "🗑️  ×${count}"
+#style = "bright-white"
+#format = "$all_status$ahead_behind"
+
+[kubernetes]
+format = 'on [⛵ $context](dimmed green) '
+#format = 'on [⛵ $context \($namespace\)](dimmed green) '
+disabled = false
+
