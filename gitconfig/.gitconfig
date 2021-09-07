@@ -15,6 +15,7 @@
     s = status -s -uno
     br = branch
     dw = diff --word-diff
+    sw = switch
     d = diff
     dc = diff --cached
     co = checkout

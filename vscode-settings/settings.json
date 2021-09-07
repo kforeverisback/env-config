@@ -1,0 +1,66 @@
+{
+    "editor.suggestSelection": "first",
+    "editor.fontSize": 15,
+    "terminal.integrated.fontFamily": "Cascadia Code PL Light",
+    "editor.fontFamily": "Cascadia Code PL Light, Fira Code Light, Consolas, 'Courier New', monospace",
+    "editor.inlineSuggest.enabled": true,
+    "editor.renderControlCharacters": true,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "selection",
+    "editor.linkedEditing": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.csharp": true
+    },
+    "[c#]": {
+    },
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "go.useLanguageServer": true,
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "redhat.telemetry.enabled": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/vscode/.vscode-server/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    "cmake.configureOnOpen": true,
+    "git.autofetch": true,
+    // Todo-Tree config
+    "todo-tree.tree.showCountsInTree": false,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "C_Cpp.updateChannel": "Insiders",
+    "java.project.importOnFirstTimeStartup": "automatic",
+    "terminal.integrated.defaultProfile.osx": "",
+    "python.defaultInterpreterPath": "C:\\Python39\\python.exe",
+    "security.workspace.trust.untrustedFiles": "open",
+    "sonarlint.rules": {
+        "java:S3776": {
+            "level": "off"
+        }
+    }
+}
