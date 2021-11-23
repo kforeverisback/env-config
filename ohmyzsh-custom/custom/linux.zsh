@@ -15,4 +15,8 @@ update_keychain() {
     source $HOME/.keychain/$HOST-sh
   fi
 }
+show_tcp_ports() {
+  # netstat -tulpn
+  netstat --tcp --udp --progam --numeric --listening
+}
 _k_help+="Use update_keychain to add keys to ssh-agent"

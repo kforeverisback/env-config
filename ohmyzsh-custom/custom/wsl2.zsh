@@ -45,3 +45,10 @@ update_clock() {
 }
 _k_help+="Use update_clock to synchronize clock with RTC"
 
+clip () {
+  local clip_path=/mnt/c/Windows/System32/Clip.exe
+  local in=$1
+  [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && exit 1
+  [ -z "$in" ] && in=`cat` # read everything from pipe stdin
+  echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
+}

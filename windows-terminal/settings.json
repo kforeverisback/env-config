@@ -33,7 +33,7 @@
             "closeOnExit" : true,
             "useAcrylic" : false,
             "fontFace" : "Cascadia Code PL",
-	    "fontWeight": "semi-light",
+            "fontWeight": "semi-light",
             "cursorColor" : "#FFFFFF",
             "cursorShape" : "filledBox",
             "colorScheme": "One Half Dark",

@@ -65,5 +65,10 @@
     "C_Cpp.updateChannel": "Insiders",
     "files.associations": {
         "Makefile": "makefile"
-    },  
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "files.insertFinalNewline": true,
+    
 }
