@@ -39,6 +39,7 @@
     chardiff = "diff --word-diff-regex=."
     worddiff = "diff --word-diff"
     rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+    rv = remote -v
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f

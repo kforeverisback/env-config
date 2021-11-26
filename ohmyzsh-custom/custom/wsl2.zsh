@@ -3,14 +3,6 @@ _k_help+="Useful prog: trickle"
 _k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
 _k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 
-export GOROOT="/usr/local/go/"
-export PATH="$PATH:${GOROOT}/bin:$HOME/.dotnet/tools/:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin/"
-export KUBE_EDITOR="vi"
-
-# WSL-X11 Specific Export
-export DISPLAY=$(win-ip):0
-export LIBGL_ALWAYS_INDIRECT=1
-
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
 # https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
 update_keychain() {
@@ -31,17 +23,24 @@ update_keychain() {
 _k_help+="Use update_keychain to add keys to ssh-agent"
 update_keychain
 
+# If WSL2
+if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
+    # In WSL2 Microsoft Kernel
+    wsl-ip() { ip a show eth0 | grep --color=never -oP '(?<=inet\s)\d+(\.\d+){3}' }
+    win-ip() { cat /etc/resolv.conf | grep nameserver | awk '{print $2}' }
+fi
+
 # Sourcing Azure's Bash completion
-source /etc/bash_completion.d/azure-cli
+[ -f /etc/bash_completion.d/azure-cli ] && source /etc/bash_completion.d/azure-cli
 # Source Github ZSH Completion
-source ~/.local/share/github_zsh_completion.zsh
+[ -f ~/.local/share/github_zsh_completion.zsh ] && source ~/.local/share/github_zsh_completion.zsh
 if type "kubectl" > /dev/null; then
   source <(kubectl completion zsh)
 fi
 
 update_clock() {
-    echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
-    sudo hwclock -s # hwclock --hctosys
+  echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
+  sudo hwclock -s # hwclock --hctosys
 }
 _k_help+="Use update_clock to synchronize clock with RTC"
 
@@ -52,3 +51,12 @@ clip () {
   [ -z "$in" ] && in=`cat` # read everything from pipe stdin
   echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
 }
+
+# ------------------- Export ----------------------
+#export GOROOT="/usr/local/go/"
+[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ] && export PATH="$PATH:$HOME/.dotnet/tools/"
+# WSL-X11 Specific Export
+export DISPLAY=$(win-ip):0
+export LIBGL_ALWAYS_INDIRECT=1
+
