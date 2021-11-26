@@ -1,7 +1,4 @@
 [[ -z $_k_help ]] && export _k_help=()
-_k_help+="Useful prog: trickle"
-_k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
-_k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
 # https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
@@ -54,9 +51,13 @@ clip () {
 
 # ------------------- Export ----------------------
 #export GOROOT="/usr/local/go/"
-[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
-[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ] && export PATH="$PATH:$HOME/.dotnet/tools/"
+[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+[[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 # WSL-X11 Specific Export
 export DISPLAY=$(win-ip):0
 export LIBGL_ALWAYS_INDIRECT=1
+
+_k_help+="Useful prog: trickle"
+_k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
+_k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
 

@@ -126,8 +126,9 @@ export GOPATH="${HOME}/Go"
 export GOROOT="/usr/lib/go/"
 #test -d "${GOPATH}" || mkdir "${GOPATH}"
 #test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-[ "${PATH#*:${GOPATH}/bin}" == "$PATH" ] && export PATH="$PATH:${GOPATH}/bin"
-[ "${PATH#*:$HOME/.local/bin}" == "$PATH" ] && export PATH="$PATH:$HOME/.local/bin"
+[[ "${PATH#*:${GOPATH}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOPATH}/bin"
+[[ "${PATH#*:$HOME/.local/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.local/bin"
+#[[ "${PATH#*:$HOME/.cargo/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.cargo/bin"
 export KUBE_EDITOR="vi"
 # ----------------------- Exports ----------------------
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
