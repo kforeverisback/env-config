@@ -17,7 +17,6 @@ update_keychain() {
     source $HOME/.keychain/$HOST-sh
   fi
 }
-_k_help+="Use update_keychain to add keys to ssh-agent"
 update_keychain
 
 # If WSL2
@@ -39,16 +38,32 @@ update_clock() {
   echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
   sudo hwclock -s # hwclock --hctosys
 }
-_k_help+="Use update_clock to synchronize clock with RTC"
 
+# Copy from WSL terminal to Windows Clipboard
+# Sort of a xclip alternative
 clip () {
   local clip_path=/mnt/c/Windows/System32/Clip.exe
   local in=$1
-  [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && exit 1
+  [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && return 1
   [ -z "$in" ] && in=`cat` # read everything from pipe stdin
   echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
 }
 
+# Mount Home dir of current Distro to be accessible from all Distro
+# https://stackoverflow.com/questions/65815011/moving-files-between-different-wsl2-instances
+wsl_mount_home () {
+  local wsl_path=/mnt/c/Windows/System32/wsl.exe
+  [ ! -f ${wsl_path} ] && echo "${wsl_path} binary not found" && return 1
+  [ -z $WSL_DISTRO_NAME ] && echo "Proper WSL environment (env WSL_DISTRO_NAME) not found" && return 1
+  local mount_path=/mnt/wsl/${WSL_DISTRO_NAME}_$(echo ${USER})
+  if [[ "$(mount -l | grep "${mount_path}")" != '' ]]; then
+    echo "Mount at ${mount_path} already exists" && return 1
+  fi
+
+  mkdir ${mount_path}
+  echo "Mounting '$HOME' to ${mount_path}"
+  ${wsl_path} -d "${WSL_DISTRO_NAME}" -u root mount --bind ${HOME} ${mount_path}
+}
 # ------------------- Export ----------------------
 #export GOROOT="/usr/local/go/"
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
@@ -58,6 +73,13 @@ export DISPLAY=$(win-ip):0
 export LIBGL_ALWAYS_INDIRECT=1
 
 _k_help+="Useful prog: trickle"
-_k_help+="WSL2 Network IP: $(wsl-ip). Use 'wsl-ip' for WSL2-IP addr"
-_k_help+="Windows Virt Network IP: $(win-ip). Use 'win-ip' for VirtNetwork-IP addr"
+_k_help+="Useful functions:"
+_k_help+="
+  wsl-ip : wsl2 network ip
+  win-ip : windows virt network IP
+  clip   : copy terminal buffer to clipboard
+  update_keychain : add ssh keys to keychain
+  update_clock    : synchronize clock with RTC
+  wsl_mount_home  : mount home dir is current Distro
+                    to be accessible from all distros"
 
