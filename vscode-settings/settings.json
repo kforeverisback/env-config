@@ -1,8 +1,8 @@
 {
     // General
     "editor.suggestSelection": "first",
-    "terminal.integrated.fontFamily": "Cascadia Code PL Light",
-    "editor.fontFamily": "Cascadia Code PL Light, Fira Code Light, Consolas, 'Courier New', monospace",
+    "terminal.integrated.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono",
+    "editor.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono, Fira Code Light, Consolas, 'Courier New', monospace",
     "editor.inlineSuggest.enabled": true,
     "editor.renderControlCharacters": true,
     "editor.fontSize": 15,
@@ -13,6 +13,9 @@
         79,
         118
     ],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs":"active",
+    "files.insertFinalNewline": true,
     "git.autofetch": true,
     // C# Specific
     "[c#]": {
@@ -69,6 +72,5 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "files.insertFinalNewline": true,
     
 }
