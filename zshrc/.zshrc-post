@@ -8,7 +8,7 @@ export ZSH_HIGHLIGHT_MAXLENGTH=36
 #
 eval "$(mcfly init zsh)"
 export MCFLY_HISTORY_LIMIT=10000
-export MCFLY_RESULTS=20
-export MCFLY_FUZZY=2
-export MCFLY_KEY_SCHEME=vim
+export MCFLY_RESULTS=35
+#export MCFLY_FUZZY=2
+#export MCFLY_KEY_SCHEME=vim
 
