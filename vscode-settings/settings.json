@@ -17,6 +17,8 @@
     "editor.guides.bracketPairs":"active",
     "files.insertFinalNewline": true,
     "git.autofetch": true,
+    // Indent Rainbow
+    "indentRainbow.updateDelay": 500, // lower number will cost more resources
     // C# Specific
     "[c#]": {
         "editor.codeActionsOnSave": {
