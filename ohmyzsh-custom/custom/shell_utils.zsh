@@ -1,6 +1,4 @@
 # Extra Utilities and their aliases
-#
-
 [[ -z $_k_help ]] && export _k_help=()
 # ---------------- Alias -----------------
 #
@@ -13,7 +11,6 @@ then
   ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
 fi
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
-alias ll='ls -Flh'                       # Preferred 'ls' implementation
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 #cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias c='clear'                             # c:            Clear terminal display
@@ -39,7 +36,7 @@ alias g='git'
 #alias mv='mv_adv_mod_8.32 -g'
 alias rm="echo Use del/trash. /bin/rm is aliased to xxrm"
 alias xxrm='/bin/rm'
-alias grm="echo Use del/trash, or the full path i.e. '/usr/local/bin/grm'"
+alias grm="rm"
 # If you're having SpaceVim issues with NVim, disable nvim aliases
 alias vim='nvim'
 alias e='nvim'
@@ -51,9 +48,10 @@ alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 
 # Unalias ls and ll
-alias ls='exa --color=auto'
+alias ls='exa --color=auto --icons'
+alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
-alias top='btm' # Completion installed in ~/.oh-my-zsh/completions
+alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
 alias sd='sd' # Sed replacement https://github.com/chmln/sd
 alias du='dust' # https://github.com/bootandy/dust
 # Another one https://github.com/nachoparker/dutree
@@ -84,9 +82,6 @@ scpproxy () { scp -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"
 
 scpjump() { local host=$(getHost "$@"); echo $host; scp -o ProxyCommand="ssh jumpbox nc $host 22" "$@"; }
 sshjump() { ssh -X -J jumpbox "$@";  }
-
-scpjumpmbs() { local host=$(getHost "$@") && scp -o ProxyCommand="ssh jumpbox-mbs nc $host 22" "$@"; }
-sshjumpmbs() { ssh -X -J jumpbox-mbs "$@"; }
 
 export PROXY_PRFX="(XXXX)"
 setProxy() {
@@ -134,11 +129,8 @@ export KUBE_EDITOR="vi"
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
 _k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
-_k_help+="We are using Starship for Themeing!"
-
-_k_help+="Added $GOPATH/bin to path"
-_k_help+="FileMan: ranger(terminal)"
+_k_help+="FileMan: ranger"
 _k_help+='Added Rusted tools:'
-_k_help+='    fd, bat, exa, procs, btm, sd, dust, toeki, hyperfine, pueue, git-delta'
+_k_help+='    fd, bat, exa, procs, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta'
 echo "Check myhelp for initialization notice"
 
