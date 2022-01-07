@@ -2,7 +2,7 @@
 
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
 # https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
-update_keychain() {
+function update_keychain {
   if ! command -v keychain &> /dev/null; then
     echo "'keychain' not found in system."
   else
@@ -17,6 +17,7 @@ update_keychain() {
     source $HOME/.keychain/$HOST-sh
   fi
 }
+
 update_keychain
 
 # If WSL2
@@ -34,14 +35,14 @@ if type "kubectl" > /dev/null; then
   source <(kubectl completion zsh)
 fi
 
-update_clock() {
+function update_clock {
   echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
   sudo hwclock -s # hwclock --hctosys
 }
 
 # Copy from WSL terminal to Windows Clipboard
 # Sort of a xclip alternative
-clip () {
+function clip {
   local clip_path=/mnt/c/Windows/System32/Clip.exe
   local in=$1
   [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && return 1
@@ -51,7 +52,7 @@ clip () {
 
 # Mount Home dir of current Distro to be accessible from all Distro
 # https://stackoverflow.com/questions/65815011/moving-files-between-different-wsl2-instances
-wsl_mount_home () {
+function wsl_mount_home {
   local wsl_path=/mnt/c/Windows/System32/wsl.exe
   [ ! -f ${wsl_path} ] && echo "${wsl_path} binary not found" && return 1
   [ -z $WSL_DISTRO_NAME ] && echo "Proper WSL environment (env WSL_DISTRO_NAME) not found" && return 1

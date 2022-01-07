@@ -67,24 +67,26 @@ alias pdfview='evince'
 
 # Setting the brew proxy according to this stackoverflow
 # https://apple.stackexchange.com/questions/228865/how-to-install-an-homebrew-package-behind-a-proxy
-setGitProxy () {
+function setGitProxy {
   git config --global http.proxy http://proxy-chain.XXXX.com:911 && \
   git config --global https.proxy https://proxy-chain.XXXX.com:912 && \
   git config --global core.sshCommand "ssh -i ~/.ssh/bitbucket-key -o ProxyCommand='nc -X 5 -x proxy-us.XXXX.com:1080 %h %p' -F /dev/null"
 }
-resetGitProxy () {
+
+function resetGitProxy {
   git config --global --unset http.proxy && \
   git config --global --unset https.proxy && \
   git config --global --unset core.sshCommand
 }
-sshproxy () { ssh -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
-scpproxy () { scp -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
 
-scpjump() { local host=$(getHost "$@"); echo $host; scp -o ProxyCommand="ssh jumpbox nc $host 22" "$@"; }
-sshjump() { ssh -X -J jumpbox "$@";  }
+function sshproxy { ssh -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
+function scpproxy { scp -o ProxyCommand="nc -X 5 -x proxy-us.XXXX.com:1080 %h %p" "$@"; }
+
+function scpjump { local host=$(getHost "$@"); echo $host; scp -o ProxyCommand="ssh jumpbox nc $host 22" "$@"; }
+function sshjump { ssh -X -J jumpbox "$@";  }
 
 export PROXY_PRFX="(XXXX)"
-setProxy() {
+function setProxy {
   export HTTPS_PROXY="http://proxy-fm.XXXX.com:911";
   export HTTP_PROXY=$HTTPS_PROXY; export http_proxy=$HTTPS_PROXY;
   export https_proxy=$HTTPS_PROXY; export ALL_PROXY=$HTTPS_PROXY;
@@ -93,14 +95,16 @@ setProxy() {
   # ZSH
   export PROMPT="$PROXY_PRFX $PROMPT";
 }
-resetProxy() {
+
+function resetProxy {
   unset HTTPS_PROXY;unset HTTP_PROXY;unset http_proxy;unset https_proxy;unset ALL_PROXY;
   # BASH
   #export PS1="${PS1/$PROXY_PRFX/}";
   # ZSH
   export PROMPT=${PROMPT/${PROXY_PRFX}/}
 }
-restartNet() {
+
+function restartNet {
   if [ $# -eq 1 ]; then
     sudo ifconfig $1 down; sleep 0.1;
     sudo ifconfig $1 up;
@@ -109,7 +113,7 @@ restartNet() {
   fi
 }
 
-myhelp() {
+function myhelp {
     printf '%s\n' "${_k_help[@]}"
 }
 
