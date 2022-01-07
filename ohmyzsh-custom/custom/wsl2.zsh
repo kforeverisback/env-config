@@ -71,6 +71,8 @@ wsl_mount_home () {
 # WSL-X11 Specific Export
 export DISPLAY=$(win-ip):0
 export LIBGL_ALWAYS_INDIRECT=1
+# Important for WSL to automatically open default browser 
+export BROWSER=wslview
 
 _k_help+="Useful prog: trickle"
 _k_help+="Useful functions:"
@@ -81,5 +83,6 @@ _k_help+="
   update_keychain : add ssh keys to keychain
   update_clock    : synchronize clock with RTC
   wsl_mount_home  : mount home dir is current Distro
-                    to be accessible from all distros"
+                    to be accessible from all distros
+  Check wslu packages (wslview, wslvar etc)"
 
