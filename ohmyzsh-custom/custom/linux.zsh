@@ -11,7 +11,7 @@ function update_keychain {
     then
       keychain -q -k all
     fi
-    keychain -q --nogui --timeout ${timeout} $HOME/.ssh/id_rsa $HOME/.ssh/github-key-ms
+    keychain -q --nogui --timeout ${timeout} $HOME/.ssh/kushal_id_rsa $HOME/.ssh/github-key-ms
     source $HOME/.keychain/$HOST-sh
   fi
 }
@@ -21,5 +21,5 @@ function show_tcp_ports {
   netstat --tcp --udp --progam --numeric --listening
 }
 
-_k_help+="Use update_keychain to add keys to ssh-agent"
+_k_help+=("Use update_keychain to add keys to ssh-agent")
 
