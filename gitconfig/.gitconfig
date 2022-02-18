@@ -38,8 +38,10 @@
     f = "!git ls-files | grep -i"
     chardiff = "diff --word-diff-regex=."
     worddiff = "diff --word-diff"
+    list-gone-branches = "!git branch -vv |  grep 'origin/.*: gone]' |awk '{print $1}'"
     rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
     rv = remote -v
+    meld = !git difftool -t meld --dir-diff
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -63,4 +65,5 @@
 [interactive]
     diffFilter = delta --color-only
 [init]
-	defaultBranch = main
+    defaultBranch = main
+

@@ -70,7 +70,10 @@ function wsl_mount_home {
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
 [[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 # WSL-X11 Specific Export
-export DISPLAY=$(win-ip):0
+function setDisplay {
+  export DISPLAY_OLD="${DISPLAY}"
+  export DISPLAY=$(win-ip):0
+}
 export LIBGL_ALWAYS_INDIRECT=1
 # Important for WSL to automatically open default browser 
 export BROWSER=wslview
