@@ -141,9 +141,9 @@ export KUBE_EDITOR="vi"
 # ----------------------- Exports ----------------------
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
-_k_help+="Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'"
-_k_help+="FileMan: ranger"
-_k_help+='Added Rusted tools:'
-_k_help+='    fd, bat, exa, procs, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta'
-echo "Check myhelp for initialization notice"
+_k_help+=("Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'")
+_k_help+=("FileMan: ranger")
+_k_help+=("Added Rusted tools:")
+_k_help+=("    fd, bat, exa, procs, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
+echo "Check 'myhelp' for initialization notice"
 

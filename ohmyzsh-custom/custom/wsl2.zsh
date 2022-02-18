@@ -78,15 +78,13 @@ export LIBGL_ALWAYS_INDIRECT=1
 # Important for WSL to automatically open default browser 
 export BROWSER=wslview
 
-_k_help+="Useful prog: trickle"
-_k_help+="Useful functions:"
-_k_help+="
-  wsl-ip : wsl2 network ip
-  win-ip : windows virt network IP
-  clip   : copy terminal buffer to clipboard
-  update_keychain : add ssh keys to keychain
-  update_clock    : synchronize clock with RTC
-  wsl_mount_home  : mount home dir is current Distro
-                    to be accessible from all distros
-  Check wslu packages (wslview, wslvar etc)"
-
+_k_help+=("Useful prog: trickle")
+_k_help+=("Useful functions:")
+_k_help+=("  wsl-ip : wsl2 network ip")
+_k_help+=("  win-ip : windows virt network IP")
+_k_help+=("  clip   : copy terminal buffer to clipboard")
+_k_help+=("  update_keychain : add ssh keys to keychain")
+_k_help+=("  update_clock    : synchronize clock with RTC")
+_k_help+=("  wsl_mount_home  : mount home dir is current Distro")
+_k_help+=("                    to be accessible from all distros")
+_k_help+=("  Check wslu packages (wslview, wslvar etc)")
