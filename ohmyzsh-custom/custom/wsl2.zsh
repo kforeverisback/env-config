@@ -68,6 +68,7 @@ function wsl_mount_home {
 # ------------------- Export ----------------------
 #export GOROOT="/usr/local/go/"
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
 [[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 # WSL-X11 Specific Export
 function setDisplay {
