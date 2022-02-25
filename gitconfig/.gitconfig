@@ -42,6 +42,13 @@
     rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
     rv = remote -v
     meld = !git difftool -t meld --dir-diff
+    # Favorite git-extras
+    fav-extras = "!arr=(summary root info abort undo feature effort lock locked unlock reset-file delete-branch pr missing squash delete-merged-branches merge-into show-merged-branches show-unmerged-branches show-tree delete-squashed-branches rename-branch repl brv commits-since delta sync ignore-io) && echo 'Git-Extras favs:' && printf '  - %s\n' ${arr[@]} | sort"
+    ren-br = rename-branch
+    del-br = delete-branch
+    tree = show-tree
+    gh-pr = print
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
