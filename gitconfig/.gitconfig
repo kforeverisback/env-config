@@ -43,7 +43,7 @@
     rv = remote -v
     meld = !git difftool -t meld --dir-diff
     # Favorite git-extras
-    fav-extras = "!arr=(summary root info abort undo feature effort lock locked unlock reset-file delete-branch pr missing squash delete-merged-branches merge-into show-merged-branches show-unmerged-branches show-tree delete-squashed-branches rename-branch repl brv commits-since delta sync ignore-io) && echo 'Git-Extras favs:' && printf '  - %s\n' ${arr[@]} | sort"
+    fav-extras = "!echo 'Git-Extras favs:' && echo summary root info abort undo feature effort lock locked unlock reset-file delete-branch pr missing squash delete-merged-branches merge-into show-merged-branches show-unmerged-branches show-tree delete-squashed-branches rename-branch repl brv commits-since delta sync ignore-io | tr ' ' '\n' | sort | xargs -I _ printf '  - %s\n' _"
     ren-br = rename-branch
     del-br = delete-branch
     tree = show-tree
