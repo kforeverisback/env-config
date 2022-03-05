@@ -53,7 +53,7 @@ alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
 alias sd='sd' # Sed replacement https://github.com/chmln/sd
-alias du='dust' # https://github.com/bootandy/dust
+alias du='dust -r' # https://github.com/bootandy/dust
 # Another one https://github.com/nachoparker/dutree
 alias cloc='tokei'
 alias bench='hyperfine'
