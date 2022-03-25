@@ -47,7 +47,8 @@ function clip {
   local in=$1
   [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && return 1
   [ -z "$in" ] && in=`cat` # read everything from pipe stdin
-  echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
+  #echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
+  echo ${in} | sed 's#\n$#\r\n#g' | ${clip_path} # replace newline to windows format
 }
 
 # Mount Home dir of current Distro to be accessible from all Distro

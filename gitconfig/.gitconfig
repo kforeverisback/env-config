@@ -10,7 +10,6 @@
     rebase = false
 [alias]
     #Basic Commands
-    cp = cherry-pick
     st = status -uno
     s = status -s -uno
     br = branch
