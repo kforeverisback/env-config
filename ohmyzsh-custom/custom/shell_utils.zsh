@@ -117,13 +117,15 @@ function myhelp {
     printf '%s\n' "${_k_help[@]}"
 }
 
-# Run once per session to make sure renameat2 exists
-if ! $(hash renameat2 &> /dev/null); then
-    wget https://gist.github.com/eatnumber1/f97ac7dad7b1f5a9721f/raw/1c470832ec3e481f06dd10fbe35bd5787871adeb/renameat2.c -O /tmp/renameat2.c &> /dev/null
-    gcc -O3 -fPIC -Wall -o $HOME/.local/bin/renameat2 /tmp/renameat2.c &> /dev/null
-fi
 function swap_filenames {
   # using renameat2  https://gist.github.com/eatnumber1/f97ac7dad7b1f5a9721f/raw/1c470832ec3e481f06dd10fbe35bd5787871adeb/renameat2.c
+
+# Run once per session to make sure renameat2 exists
+  if ! $(hash renameat2 &> /dev/null); then
+      echo 'Downloading and compiling renameat2'
+      wget https://gist.github.com/eatnumber1/f97ac7dad7b1f5a9721f/raw/1c470832ec3e481f06dd10fbe35bd5787871adeb/renameat2.c -O /tmp/renameat2.c &> /dev/null
+      gcc -O3 -fPIC -Wall -o $HOME/.local/bin/renameat2 /tmp/renameat2.c &> /dev/null
+  fi
   renameat2 -e $@ 
 }
 
