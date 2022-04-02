@@ -48,8 +48,9 @@ alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 
 # Unalias ls and ll
-alias ls='exa --color=auto --icons'
-alias ll='ls -Flh' # Preferred 'ls' implementation
+alias ls='exa'
+alias ll='exa -Flh --color=auto --icons' # Preferred 'ls' implementation
+#alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
 alias sd='sd' # Sed replacement https://github.com/chmln/sd
