@@ -42,6 +42,13 @@ function update_clock {
 
 # Copy from WSL terminal to Windows Clipboard
 # Sort of a xclip alternative
+function clip {
+  clip_path=$(wslpath 'c:\Windows\System32\');
+  pushd $clip_path > /dev/null;
+  ${clip_path}clip.exe < "${1:-/dev/stdin}";
+  popd > /dev/null;
+}
+
 #function clip {
 #  local clip_path=/mnt/c/Windows/System32/Clip.exe
 #  local in=$1
