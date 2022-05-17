@@ -75,8 +75,32 @@ function wsl_mount_home {
 }
 # ------------------- Export ----------------------
 #export GOROOT="/usr/local/go/"
-[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
-which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
+#[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+#which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
+function _winapp {
+  prog_path=$(wslpath $1);
+  prog_name=$(basename "$prog_path");
+  [[ ! -x "$prog_path" ]] && echo "Windows path ($prog_name) is not an executable"
+  args=$2;
+  pushd $(dirname $prog_path)> /dev/null;
+  ${prog_path} "$args";
+  popd > /dev/null;
+}
+function code {
+  target=$(realpath "${1}")
+  clip_path=$(wslpath 'C:\Users\mekram\AppData\Local\Programs\MicrosoftVSCode\bin\');
+  pushd $clip_path > /dev/null;
+  ./code "${target}";
+  popd > /dev/null;
+}
+
+function winget {
+  clip_path=$(wslpath  'C:\Users\mekram\AppData\Local\Microsoft\WindowsApps\')
+  pushd $clip_path > /dev/null;
+  ./winget.exe "${1}";
+  popd > /dev/null;
+}
+
 [[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 # WSL-X11 Specific Export
 function setDisplay {
