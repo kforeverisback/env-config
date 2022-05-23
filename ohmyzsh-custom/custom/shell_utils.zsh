@@ -118,6 +118,9 @@ function myhelp {
     printf '%s\n' "${_k_help[@]}"
 }
 
+function randpw { < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-8};echo;}
+function randpws { </dev/urandom tr -dc '12345!@#$%^&*-=+.<>_A-Z-a-z-0-9'|head -c${1:-8};echo;}
+
 function swap_filenames {
   # using renameat2  https://gist.github.com/eatnumber1/f97ac7dad7b1f5a9721f/raw/1c470832ec3e481f06dd10fbe35bd5787871adeb/renameat2.c
 
