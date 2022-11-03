@@ -1,6 +1,6 @@
 [core]
     excludesfile = ~/.gitignore_global
-    editor = vim
+    editor = nvim
     #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
     pager = delta
     whitespace = blank-at-eol,blank-at-eof,space-before-tab

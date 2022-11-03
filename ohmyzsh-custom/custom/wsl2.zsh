@@ -18,8 +18,6 @@ function update_keychain {
   fi
 }
 
-update_keychain
-
 # If WSL2
 if [[ $(uname -a | grep -iE '.WSL|.microsoft') != '' ]]; then
     # In WSL2 Microsoft Kernel
@@ -38,6 +36,7 @@ fi
 function update_clock {
   echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
   sudo hwclock -s # hwclock --hctosys
+  sudo ntpdate time.windows.com
 }
 
 # Copy from WSL terminal to Windows Clipboard
@@ -48,15 +47,6 @@ function clip {
   ${clip_path}clip.exe < "${1:-/dev/stdin}";
   popd > /dev/null;
 }
-
-#function clip {
-#  local clip_path=/mnt/c/Windows/System32/Clip.exe
-#  local in=$1
-#  [ ! -f ${clip_path} ] && echo "${clip_path} binary not found" && return 1
-#  [ -z "$in" ] && in=`cat` # read everything from pipe stdin
-#  #echo ${in} | tr '\n' '\r\n' | ${clip_path} # replace newline to windows format
-#  echo ${in} | sed 's#\n$#\r\n#g' | ${clip_path} # replace newline to windows format
-#}
 
 # Mount Home dir of current Distro to be accessible from all Distro
 # https://stackoverflow.com/questions/65815011/moving-files-between-different-wsl2-instances
@@ -75,8 +65,8 @@ function wsl_mount_home {
 }
 # ------------------- Export ----------------------
 #export GOROOT="/usr/local/go/"
-#[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
-#which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
+[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
 function _winapp {
   prog_path=$(wslpath $1);
   prog_name=$(basename "$prog_path");
@@ -84,20 +74,6 @@ function _winapp {
   args=$2;
   pushd $(dirname $prog_path)> /dev/null;
   ${prog_path} "$args";
-  popd > /dev/null;
-}
-function code {
-  target=$(realpath "${1}")
-  clip_path=$(wslpath 'C:\Users\mekram\AppData\Local\Programs\MicrosoftVSCode\bin\');
-  pushd $clip_path > /dev/null;
-  ./code "${target}";
-  popd > /dev/null;
-}
-
-function winget {
-  clip_path=$(wslpath  'C:\Users\mekram\AppData\Local\Microsoft\WindowsApps\')
-  pushd $clip_path > /dev/null;
-  ./winget.exe "${1}";
   popd > /dev/null;
 }
 
@@ -110,6 +86,9 @@ function setDisplay {
 export LIBGL_ALWAYS_INDIRECT=1
 # Important for WSL to automatically open default browser 
 export BROWSER=wslview
+
+echo "Updating KeyChain"
+update_keychain
 
 _k_help+=("Useful prog: trickle")
 _k_help+=("Useful functions:")
