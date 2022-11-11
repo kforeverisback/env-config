@@ -64,7 +64,19 @@ function wsl_mount_home {
   ${wsl_path} -d "${WSL_DISTRO_NAME}" -u root mount --bind ${HOME} ${mount_path}
 }
 # ------------------- Export ----------------------
-#export GOROOT="/usr/local/go/"
+# Go development
+# Kushal: Instead of "brew --prefix golang" we are replacing this command with output of "brew --prefix golang"
+#export GOROOT="$(brew --prefix golang)/libexec"
+export GOPATH="${HOME}/Go"
+export GOROOT="/usr/local/go/"
+#test -d "${GOPATH}" || mkdir "${GOPATH}"
+#test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
+[[ "${PATH#*:${GOPATH}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOPATH}/bin"
+[[ "${PATH#*:${GOROOT}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOROOT}/bin"
+[[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
+#[[ "${PATH#*:$HOME/.cargo/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.cargo/bin"
+export KUBE_EDITOR="vim"
+# ----------------------- End Exports ----------------------
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
 which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
 function _winapp {
@@ -77,7 +89,6 @@ function _winapp {
   popd > /dev/null;
 }
 
-[[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 # WSL-X11 Specific Export
 function setDisplay {
   export DISPLAY_OLD="${DISPLAY}"

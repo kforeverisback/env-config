@@ -133,20 +133,7 @@ function swap_filenames {
   renameat2 -e $@ 
 }
 
-# ----------------------- Exports ----------------------
-# Go development
-# Kushal: Instead of "brew --prefix golang" we are replacing this command with output of "brew --prefix golang"
-#export GOROOT="$(brew --prefix golang)/libexec"
-export GOPATH="${HOME}/Go"
-export GOROOT="/usr/local/go/"
-#test -d "${GOPATH}" || mkdir "${GOPATH}"
-#test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
-[[ "${PATH#*:${GOPATH}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOPATH}/bin"
-[[ "${PATH#*:${GOROOT}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOROOT}/bin"
 [[ "${PATH#*:$HOME/.local/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.local/bin"
-#[[ "${PATH#*:$HOME/.cargo/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.cargo/bin"
-export KUBE_EDITOR="vi"
-# ----------------------- Exports ----------------------
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
 _k_help+=("Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'")
