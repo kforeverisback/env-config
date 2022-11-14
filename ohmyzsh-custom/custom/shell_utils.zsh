@@ -136,7 +136,8 @@ function swap_filenames {
 [[ "${PATH#*:$HOME/.local/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.local/bin"
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
-_k_help+=("Enabled zsh Plugins '$(printf -- '%s ' ${plugins[@]})'")
+_k_help+=("Enabled zsh Plugins ")
+_k_help+=("$(printf -- '    %s\n' ${plugins[@]})'")
 _k_help+=("FileMan: ranger")
 _k_help+=("Added Rusted tools:")
 _k_help+=("    fd, bat, exa, procs, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")

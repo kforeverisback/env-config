@@ -1,6 +1,6 @@
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
 # https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
-function update_keychain {
+function update-keychain {
   if ! command -v keychain &> /dev/null; then
     echo "'keychain' not found in system."
   else
@@ -20,6 +20,8 @@ function show_tcp_ports {
   # netstat -tulpn
   netstat --tcp --udp --progam --numeric --listening
 }
+
+alias update_keychain=update-keychain
 
 _k_help+=("Use update_keychain to add keys to ssh-agent")
 

@@ -2,7 +2,7 @@
 
 # Kushal: For OpenSSH Agent on WSL: https://esc.sh/blog/ssh-agent-windows10-wsl2/
 # https://blog.kylemanna.com/linux/use-funtoos-keyhain-insetad-of-gnome-keyring/
-function update_keychain {
+function update-keychain {
   if ! command -v keychain &> /dev/null; then
     echo "'keychain' not found in system."
   else
@@ -33,7 +33,7 @@ if type "kubectl" > /dev/null; then
   source <(kubectl completion zsh)
 fi
 
-function update_clock {
+function update-clock {
   echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
   sudo hwclock -s # hwclock --hctosys
   sudo ntpdate time.windows.com
@@ -75,7 +75,7 @@ export GOROOT="/usr/local/go/"
 [[ "${PATH#*:${GOROOT}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOROOT}/bin"
 [[ "${PATH#*:$HOME/.dotnet/tools/}" == "$PATH" ]] && export PATH="$PATH:$HOME/.dotnet/tools/"
 #[[ "${PATH#*:$HOME/.cargo/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.cargo/bin"
-export KUBE_EDITOR="vim"
+export KUBE_EDITOR="nvim"
 # ----------------------- End Exports ----------------------
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
 which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
@@ -99,15 +99,19 @@ export LIBGL_ALWAYS_INDIRECT=1
 export BROWSER=wslview
 
 echo "Updating KeyChain"
-update_keychain
+update-keychain
+alias update_keychain=update-keychain
+alias update_clock=update-clock
 
 _k_help+=("Useful prog: trickle")
 _k_help+=("Useful functions:")
 _k_help+=("  wsl-ip : wsl2 network ip")
 _k_help+=("  win-ip : windows virt network IP")
 _k_help+=("  clip   : copy terminal buffer to clipboard")
-_k_help+=("  update_keychain : add ssh keys to keychain")
-_k_help+=("  update_clock    : synchronize clock with RTC")
+_k_help+=("  update-keychain : add ssh keys to keychain")
+_k_help+=("  update-clock    : synchronize clock with RTC")
 _k_help+=("  wsl_mount_home  : mount home dir is current Distro")
 _k_help+=("                    to be accessible from all distros")
+_k_help+=("  sudo update-binfmts --disable cli : If windows drive programs are not found")
+_k_help+=("  Check wslu packages (wslview, wslvar etc)")
 _k_help+=("  Check wslu packages (wslview, wslvar etc)")
