@@ -62,6 +62,7 @@ alias q='pueue'
 alias rgv='rg -v "rg " | rg'
 alias rgi='rg -i'
 alias pdfview='evince'
+alias rsync='rsync -azvhP' # [a]rchive (to preserve attributes) and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [P]rogress
 # ---------------- Alias -------------------
 
 # ----------------- Func -------------------
