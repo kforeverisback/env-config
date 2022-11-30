@@ -42,6 +42,8 @@ alias vim='nvim'
 alias e='nvim'
 alias vi='nvim'
 alias vimdiff='nvim -d'
+alias incognito=' unset HISTFILE'
+alias nohist=' unset HISTFILE'
 
 ## Awesome Rusted Tools
 alias fd='fd -H'
