@@ -1,0 +1,4 @@
+[submodule "rofi-goodies"]
+	path = rofi-goodies
+	url = https://github.com/kforeverisback/rofi-goodies
+	branch = master
