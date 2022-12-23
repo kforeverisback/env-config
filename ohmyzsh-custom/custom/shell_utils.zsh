@@ -117,6 +117,10 @@ function restartNet {
   fi
 }
 
+function myip {
+  curl -L ifconfig.me
+}
+
 function myhelp {
     printf '%s\n' "${_k_help[@]}"
 }
