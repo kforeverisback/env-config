@@ -53,8 +53,14 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[credential]
-	helper = cache --timeout=7200
+
+[includeIf "gitdir:/Users/"]
+    path = ~/.git-cred-mac
+[includeIf "gitdir:C:"]
+    path = ~/.git-cred-windows
+[includeIf "gitdir:/home/"]
+    path = ~/.git-cred-linux
+
 [color]
     diff = auto
     status = auto
