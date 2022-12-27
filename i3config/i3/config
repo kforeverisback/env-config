@@ -4,6 +4,8 @@
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 # Mod1=<Alt>, Mod4=<Windows>
 set $mod Mod4
+set $alt Mod1
+set $ctrl Ctrl
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -98,6 +100,8 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec microsoft-edge-stable
 #bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec thunar
+bindsym $mod+c exec copyq toggle
+bindsym Mod1+grave exec copyq toggle
 #bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -162,7 +166,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # toggle sticky
-bindsym $mod+Shift+s sticky toggle
+# bindsym $mod+Shift+s sticky toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -367,7 +371,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 # Kushal
 exec --no-startup-id clipit
-#exec --no-startup-id copyq
+exec --no-startup-id copyq
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
