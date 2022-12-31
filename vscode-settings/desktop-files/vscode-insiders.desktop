@@ -1,0 +1,27 @@
+[Desktop Entry]
+Name=Visual Studio Code (Insiders)
+Comment=Code Editing. Redefined.
+GenericName=Code/Text Editor
+Exec=/usr/local/bin/code-insiders --unity-launch %F
+Icon=/opt/microsoft/code-insiders/resources/app/resources/linux/code.png
+Type=Application
+StartupNotify=false
+Categories=TextEditor;Development;IDE;
+MimeType=text/plain;inode/directory;application/x-code-workspace;text/plain;text/*;text/css;text/html;text/javascript;text/csv;text/ecmascript;text/markdown;text/sgml;text/xml;text/x-csharp;text/json;application/json;application/xml;application;application/node;application/xml-dtd;application/xml-external-parsed-entity;application/xml-patch+xml;application/sql;application/soap+xml;application/jwt;application/jwk+json;application/jwk-set+json
+Actions=new-empty-window;Diff;Open-Reuse-Window;
+Keywords=vscode;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/usr/local/bin/code-insiders --new-window %F
+Icon=/opt/microsoft/code-insiders/resources/app/resources/linux/code.png
+
+[Desktop Action Diff]
+Name=Diff Two Files
+Exec=/usr/local/bin/code-insiders --diff %F
+Icon=/opt/microsoft/code-insiders/resources/app/resources/linux/code.png
+
+[Desktop Action Open-Reuse-Window]
+Name=Open in Existing Window
+Exec=/usr/local/bin/code-insiders --reuse-window %F
+Icon=/opt/microsoft/code-insiders/resources/app/resources/linux/code.png
