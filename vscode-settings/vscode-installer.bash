@@ -18,5 +18,9 @@ mv "$code_tmp_dir/VSCode-linux-x64" "$CODE_DIR/"
 
 bin_names=("$code_parent_dir/bin/code" "$code_parent_dir/bin/code-insiders")
 for i in "${bin_names[@]}"; do
-    [[ -f "$i" ]] && echo "Bin: $i" && ln -sf "$i" /usr/local/bin/code
+    if [[ -f "$i" ]];then
+        echo "Bin: $i"
+        ln -sf "$i" /usr/local/bin/code
+        ln -sf "$code_parent_dir" "$CODE_DIR/$(basename $i)"
+    fi
 done
