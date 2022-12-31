@@ -100,8 +100,9 @@ bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 bindsym $mod+F2 exec microsoft-edge-stable
 #bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec thunar
-bindsym $mod+c exec copyq toggle
-bindsym Mod1+grave exec copyq toggle
+bindsym $mod+c exec --no-startup-id copyq toggle
+# bindsym Mod1+grave exec --no-startup-id copyq toggle
+bindsym Mod1+grave exec --no-startup-id ~/.config/i3/scripts/copyq-rofi.bash 10
 #bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec pcmanfm_pkexec
@@ -275,7 +276,7 @@ for_window [title="alsamixer"] floating enable border pixel 1
 #for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 # Added Kushal
-for_window [class="copyq"] floating enable sticky enable border normal 
+for_window [class="copyq"] floating enable sticky enable border normal
 #for_window [title="File Transfer*"] floating enable
 #for_window [class="fpakman"] floating enable
 #for_window [class="Galculator"] floating enable border pixel 1
