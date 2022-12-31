@@ -11,13 +11,12 @@ code_tmp_dir=$(mktemp -d)
 wget -c "$url" -O- | tar -xz -C "$code_tmp_dir"
 
 code_parent_dir="$CODE_DIR/VSCode-linux-x64"
-tmp_code_dir="$code_tmp_dir/VSCode-linux-x64"
 
 [[ -d "$code_parent_dir" ]] && rm -r "$code_parent_dir"
-mkdir -p "$code_parent_dir"
-mv "$tmp_code_dir" "$code_parent_dir"
+mkdir -p "$CODE_DIR"
+mv "$code_tmp_dir/VSCode-linux-x64" "$CODE_DIR/"
 
-bin_names=("$code_parent_dir/VSCode-linux-x64/bin/code" "$code_parent_dir/VSCode-linux-x64/bin/code-insiders")
+bin_names=("$code_parent_dir/bin/code" "$code_parent_dir/bin/code-insiders")
 for i in "${bin_names[@]}"; do
-    [[ -f "$i" ]] && ln -fns "$i" "/usr/local/bin/code"
+    [[ -f "$i" ]] && echo "Bin: $i" && ln -sf "$i" /usr/local/bin/code
 done
