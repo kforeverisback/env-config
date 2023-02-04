@@ -1,7 +1,8 @@
 {
     // General
     "editor.suggestSelection": "first",
-    "terminal.integrated.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono",
+    // "terminal.integrated.fontFamily": "Cascadia Mono PL, CaskaydiaCove Nerd Font Mono",
+    "terminal.integrated.fontSize": 14,
     "editor.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono, Fira Code Light, Consolas, 'Courier New', monospace",
     "editor.inlineSuggest.enabled": true,
     "editor.renderControlCharacters": true,
@@ -17,21 +18,41 @@
     "editor.guides.bracketPairs":"active",
     "files.insertFinalNewline": true,
     "git.autofetch": true,
-    // Indent Rainbow
-    "indentRainbow.updateDelay": 500, // lower number will cost more resources
+    "security.workspace.trust.untrustedFiles": "open",
+    "files.associations": {
+        "Makefile": "makefile"
+    },
+    // Language Specific
     // C# Specific
     "[c#]": {
         "editor.codeActionsOnSave": {
             "source.fixAll.csharp": true
         },
     },
-    "omnisharp.enableRoslynAnalyzers": true,
-    "omnisharp.enableEditorConfigSupport": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     // Yaml
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    // Html
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    // Exntensions
     // Golang
     "go.useLanguageServer": true,
     "go.toolsManagement.autoUpdate": true,
@@ -39,21 +60,13 @@
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
-    // Html
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
     // Java
     "redhat.telemetry.enabled": true,
-    "files.exclude": {
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
-    },
-    "java.project.importOnFirstTimeStartup": "automatic",
-    "security.workspace.trust.untrustedFiles": "open",
-    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:\"/home/vscode/.vscode-remote/extensions/gabrielbb.vscode-lombok-1.0.1/server/lombok.jar\"",
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.enableEditorConfigSupport": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOsverrodeDefaultValue",
+    // Indent Rainbow
+    "indentRainbow.updateDelay": 500, // lower number will cost more resources
     // To-do Tree config
     "todo-tree.tree.showCountsInTree": false,
     "todo-tree.general.tags": [
@@ -65,14 +78,7 @@
         "[ ]",
         "[x]"
     ],
+    "cSpell.diagnosticLevel": "Hint",
     "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
     "cmake.configureOnOpen": true,
-    "C_Cpp.updateChannel": "Insiders",
-    "files.associations": {
-        "Makefile": "makefile"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    
 }
