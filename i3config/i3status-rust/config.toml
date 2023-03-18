@@ -17,10 +17,10 @@ block = "focused_window"
 [[block]]
 block = "cpu"
 
-[[block]]
-block = "memory"
-format = " $icon $mem_total_used_percents.eng(w:2) "
-format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+#[[block]]
+#block = "memory"
+#format = " $icon $mem_total_used_percents.eng(w:2) "
+#format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
 
 [[block]]
 block = "disk_space"
@@ -58,15 +58,19 @@ interval = 5
 block = "time"
 interval = 60
 [block.format]
-full = " $timestamp.datetime(f:'%a %d/%m %R') "
+full = " $timestamp.datetime(f:'%a %m/%d %R') "
 short = " $icon $timestamp.datetime(f:%R) "
 
 [[block]]
 block = "sound"
 [[block.click]]
 button = "left"
-cmd = "pavucontrol"
+cmd = "alsamixer"
 
 [[block]]
 block = "backlight"
 device = "intel_backlight"
+
+[[block]]
+block = "pacman"
+signal = 1
