@@ -19,9 +19,6 @@
     "files.insertFinalNewline": true,
     "git.autofetch": true,
     "security.workspace.trust.untrustedFiles": "open",
-    "files.associations": {
-        "Makefile": "makefile"
-    },
     // Language Specific
     // C# Specific
     "[c#]": {
@@ -81,4 +78,6 @@
     "cSpell.diagnosticLevel": "Hint",
     "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
     "cmake.configureOnOpen": true,
+    "github.gitProtocol": "ssh",
+    "github.codespaces.createCodespaceInNewWindow": true,
 }
