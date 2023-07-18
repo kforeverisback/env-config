@@ -58,7 +58,7 @@
     path = ~/.git-cred-mac
 [includeIf "gitdir:C:"]
     path = ~/.git-cred-windows
-[includeIf "gitdir:/home/"]
+[includeIf "gitdir:%(prefix)//home/"]
     path = ~/.git-cred-linux
 
 [color]

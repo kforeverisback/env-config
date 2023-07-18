@@ -35,8 +35,8 @@ alias g='git'
 #alias cp='cp_adv_mod_8.32 -g'
 #alias mv='mv_adv_mod_8.32 -g'
 alias rm="echo Use del/trash. /bin/rm is aliased to xxrm"
-alias xxrm='/bin/rm'
-alias grm="rm"
+alias xxrm='/bin/rm -i'
+alias grm="rm -i"
 # If you're having SpaceVim issues with NVim, disable nvim aliases
 alias vim='nvim'
 alias e='nvim'
