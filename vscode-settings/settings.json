@@ -80,4 +80,5 @@
     "cmake.configureOnOpen": true,
     "github.gitProtocol": "ssh",
     "github.codespaces.createCodespaceInNewWindow": true,
+    "arduino.useArduinoCli": true,
 }
