@@ -37,6 +37,7 @@ function update-clock {
   echo '[ROOT] Updating clock (sudo hwclock --hctosys)'
   sudo hwclock -s # hwclock --hctosys
   sudo ntpdate time.windows.com
+  echo "date: " $(date)
 }
 
 # Copy from WSL terminal to Windows Clipboard

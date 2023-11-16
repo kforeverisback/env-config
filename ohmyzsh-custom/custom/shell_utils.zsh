@@ -5,7 +5,7 @@
 alias mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
 #alias cp='cp -iv'                         # Preferred 'cp' implementation
 # Check whether --color=auto is available then add --color=auto or add -G
-if [[ $(alias ls) == *"exa"* ]] # We want to use exa instead of standard ls
+if [[ $(alias ls) == *"eza"* ]] # We want to use eza instead of standard ls
 then
   # If not found then lets use this
   ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
@@ -35,8 +35,8 @@ alias g='git'
 #alias cp='cp_adv_mod_8.32 -g'
 #alias mv='mv_adv_mod_8.32 -g'
 alias rm="echo Use del/trash. /bin/rm is aliased to xxrm"
-alias xxrm='/bin/rm'
-alias grm="rm"
+alias xxrm='/bin/rm -i'
+alias grm="rm -i"
 # If you're having SpaceVim issues with NVim, disable nvim aliases
 alias vim='nvim'
 alias e='nvim'
@@ -44,14 +44,15 @@ alias vi='nvim'
 alias vimdiff='nvim -d'
 alias incognito=' unset HISTFILE'
 alias nohist=' unset HISTFILE'
+alias calc='wcalc'
 
 ## Awesome Rusted Tools
 alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 
 # Unalias ls and ll
-alias ls='exa'
-alias ll='exa -Flh --color=auto --icons' # Preferred 'ls' implementation
+alias ls='eza'
+alias ll='eza -Flh --color=auto --icons' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -188,8 +189,8 @@ function swap_filenames {
 # hash -r
 _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})'")
-_k_help+=("FileMan: ranger")
-_k_help+=("Added Rusted tools:")
-_k_help+=("    fd, bat, exa, procs, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
+_k_help+=("FileMan: ranger/joshuto")
+_k_help+=("Helpful tools:")
+_k_help+=("  tig, ncat, catimg, fd, bat, eza, procs, atop, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
 echo "Check 'myhelp' for initialization notice"
 
