@@ -5,6 +5,7 @@ Util Name        | Description                    | URL |
 -----------------|--------------------------------|-----|
 eza              | a `ls` alternative             | |
 bat              | a `cat` alternatives           | |
+ack              | code search tool               | |
 diskus           | du -s alternative              | |
 starship         | provides prompt                | |
 ssh-askpass      | tool for asking ssh key pass   | |
@@ -26,6 +27,7 @@ ncdu             | ncurses disk usage tree viewer | |
 procs            | a `ps` alternative             | |
 sd               | sed impl (not replacement)     | |
 tig              | terminal ncurses git           | |
+visidata         | csv(tabluar) exploration tool  | |
 toeki
 pueue
 git-delta

@@ -52,7 +52,7 @@ alias cat='bat' # Using the Bat tool instead of cat
 
 # Unalias ls and ll
 alias ls='eza'
-alias ll='eza -Flh --color=auto --icons' # Preferred 'ls' implementation
+alias ll='eza -Flh --color=auto --icons auto' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -65,6 +65,7 @@ alias q='pueue'
 alias rgv='rg -v "rg " | rg'
 alias rgi='rg -i'
 alias pdfview='evince'
+alias notes='nb' # Replacing https://github.com/pimterry/notes with https://xwmx.github.io/nb, which ism ore Obsidian like
 alias rsync='rsync -azvhP' # [a]rchive (to preserve attributes) and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [P]rogress
 # ---------------- Alias -------------------
 
@@ -190,7 +191,8 @@ function swap_filenames {
 _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})'")
 _k_help+=("FileMan: ranger/joshuto")
+_k_help+=("Note Taking: nb/obsidian (GUI)")
 _k_help+=("Helpful tools:")
-_k_help+=("  tig, ncat, catimg, fd, bat, eza, procs, atop, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
+_k_help+=("  nb, ack, visidata, tig, ncat, catimg, wcalc, fd, bat, eza, procs, atop, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
 echo "Check 'myhelp' for initialization notice"
 

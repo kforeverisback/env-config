@@ -100,7 +100,6 @@ export LIBGL_ALWAYS_INDIRECT=1
 export BROWSER=wslview
 
 echo "Updating KeyChain"
-update-keychain
 alias update_keychain=update-keychain
 alias update_clock=update-clock
 
@@ -115,3 +114,6 @@ _k_help+=("  wsl_mount_home  : mount home dir is current Distro")
 _k_help+=("                    to be accessible from all distros")
 _k_help+=("  sudo update-binfmts --disable cli : If windows drive programs are not found")
 _k_help+=("  Check wslu packages (wslview, wslvar etc)")
+
+# Calling function to initialize
+update-keychain
