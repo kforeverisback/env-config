@@ -4,6 +4,15 @@
   #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
   pager = delta
   whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[includeIf "gitdir:/Users/"]
+  path = ~/.git-cred-mac
+  path = ~/.gitconfig-mac
+[includeIf "gitdir:C:"]
+  path = ~/.git-cred-windows
+  path = ~/.gitconfig-windows
+[includeIf "gitdir:%(prefix)//home/"]
+  path = ~/.git-cred-linux
+  path = ~/.gitconfig-linux
 [include]
   path = ~/.git-user-info
 [pull]
@@ -53,17 +62,6 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-
-[includeIf "gitdir:/Users/"]
-  path = ~/.git-cred-mac
-  path = ~/.gitconfig-mac
-[includeIf "gitdir:C:"]
-  path = ~/.git-cred-windows
-  path = ~/.gitconfig-windows
-[includeIf "gitdir:%(prefix)//home/"]
-  path = ~/.git-cred-linux
-  path = ~/.gitconfig-linux
-
 [color]
   diff = auto
   status = auto
@@ -79,6 +77,5 @@
   diffFilter = delta --color-only
 [init]
   defaultBranch = main
-
 [credential "https://dev.azure.com"]
   useHttpPath = true
