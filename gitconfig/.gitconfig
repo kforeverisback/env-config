@@ -1,81 +1,81 @@
 [core]
-    excludesfile = ~/.gitignore_global
-    editor = nvim
-    #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
-    pager = delta
-    whitespace = blank-at-eol,blank-at-eof,space-before-tab
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+  #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+  whitespace = blank-at-eol,blank-at-eof,space-before-tab
+[includeIf "gitdir:/Users/"]
+  path = ~/.git-cred-mac
+  path = ~/.gitconfig-mac
+[includeIf "gitdir:C:"]
+  path = ~/.git-cred-windows
+  path = ~/.gitconfig-windows
+[includeIf "gitdir:%(prefix)//home/"]
+  path = ~/.git-cred-linux
+  path = ~/.gitconfig-linux
 [include]
-    path = ~/.git-user-info
+  path = ~/.git-user-info
 [pull]
-    rebase = false
+  rebase = false
 [alias]
-    #Basic Commands
-    st = status -uno
-    s = status -s -uno
-    br = branch
-    dw = diff --word-diff
-    sw = switch
-    d = diff
-    dc = diff --cached
-    co = checkout
-    cm = commit
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    type = cat-file -t
-    dump = cat-file -p
-    #History
-    ls = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate
-    ll = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate --numstat
-    lnc = log --pretty=format:'%h %s [%cn]'
-    adog = log --all --decorate --oneline --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
-    #File Log
-    filelog = log -u
-    fl = log -u
-    #List all Aliases
-    la = "!git config -l | grep alias | cut -c 7-"
-    alias = "!git config -l | grep alias | cut -c 7-"
-    #Search in Git Files
-    f = "!git ls-files | grep -i"
-    chardiff = "diff --word-diff-regex=."
-    worddiff = "diff --word-diff"
-    list-gone-branches = "!git branch -vv |  grep 'origin/.*: gone]' |awk '{print $1}'"
-    rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
-    rv = remote -v
-    meld = !git difftool -t meld --dir-diff
-    # Favorite git-extras
-    fav-extras = "!echo 'Git-Extras favs:' && echo summary root info abort undo feature effort lock locked unlock reset-file delete-branch pr missing squash delete-merged-branches merge-into show-merged-branches show-unmerged-branches show-tree delete-squashed-branches rename-branch repl brv commits-since delta sync ignore-io | tr ' ' '\n' | sort | xargs -I _ printf '  - %s\n' _"
-    ren-br = rename-branch
-    del-br = delete-branch
-    tree = show-tree
-    gh-pr = print
+  #Basic Commands
+  st = status -uno
+  s = status -s -uno
+  br = branch
+  dw = diff --word-diff
+  sw = switch
+  d = diff
+  dc = diff --cached
+  co = checkout
+  cm = commit
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  #History
+  ls = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate
+  ll = log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn]' --decorate --numstat
+  lnc = log --pretty=format:'%h %s [%cn]'
+  adog = log --all --decorate --oneline --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+  #File Log
+  filelog = log -u
+  fl = log -u
+  #List all Aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+  alias = "!git config -l | grep alias | cut -c 7-"
+  #Search in Git Files
+  f = "!git ls-files | grep -i"
+  chardiff = "diff --word-diff-regex=."
+  worddiff = "diff --word-diff"
+  list-gone-branches = "!git branch -vv |  grep 'origin/.*: gone]' |awk '{print $1}'"
+  rem-all-merged = "!git branch --merged | grep -v '*' | xargs -n 1 git branch -d"
+  rv = remote -v
+  meld = !git difftool -t meld --dir-diff
+  # Favorite git-extras
+  fav-extras = "!echo 'Git-Extras favs:' && echo summary root info abort undo feature effort lock locked unlock reset-file delete-branch pr missing squash delete-merged-branches merge-into show-merged-branches show-unmerged-branches show-tree delete-squashed-branches rename-branch repl brv commits-since delta sync ignore-io | tr ' ' '\n' | sort | xargs -I _ printf '  - %s\n' _"
+  ren-br = rename-branch
+  del-br = delete-branch
+  tree = show-tree
+  gh-pr = print
 
 [filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-
-[includeIf "gitdir:/Users/"]
-    path = ~/.git-cred-mac
-[includeIf "gitdir:C:"]
-    path = ~/.git-cred-windows
-[includeIf "gitdir:%(prefix)//home/"]
-    path = ~/.git-cred-linux
-
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 [color]
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
-    ui = true
-    pager = true
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
 [delta]
-    syntax-theme = Monokai Extended
-    side-by-side = false 
-    line-numbers = true
+  syntax-theme = Monokai Extended
+  side-by-side = false 
+  line-numbers = true
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 [init]
-    defaultBranch = main
-
+  defaultBranch = main
 [credential "https://dev.azure.com"]
-    useHttpPath = true
+  useHttpPath = true
