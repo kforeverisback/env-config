@@ -191,6 +191,7 @@ function swap_filenames {
 _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})'")
 _k_help+=("FileMan: ranger/joshuto")
+_k_help+=("Github Binary Release: stew")
 _k_help+=("Note Taking: nb/obsidian (GUI)")
 _k_help+=("Helpful tools:")
 _k_help+=("  nb, ack, visidata, tig, ncat, catimg, wcalc, fd, bat, eza, procs, atop, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
