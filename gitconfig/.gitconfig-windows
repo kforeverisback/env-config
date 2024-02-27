@@ -1,2 +1,5 @@
 [core]
 	autocrlf = true
+[credential]
+	helper = manager
+	useHttpPath = true

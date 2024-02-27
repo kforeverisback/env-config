@@ -5,13 +5,10 @@
   pager = delta
   whitespace = blank-at-eol,blank-at-eof,space-before-tab
 [includeIf "gitdir:/Users/"]
-  path = ~/.git-cred-mac
   path = ~/.gitconfig-mac
 [includeIf "gitdir:C:"]
-  path = ~/.git-cred-windows
   path = ~/.gitconfig-windows
 [includeIf "gitdir:%(prefix)//home/"]
-  path = ~/.git-cred-linux
   path = ~/.gitconfig-linux
 [include]
   path = ~/.git-user-info
