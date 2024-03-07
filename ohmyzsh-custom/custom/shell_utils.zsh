@@ -52,7 +52,7 @@ alias cat='bat' # Using the Bat tool instead of cat
 
 # Unalias ls and ll
 alias ls='eza'
-alias ll='eza -Flh --color=auto --icons auto' # Preferred 'ls' implementation
+alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -189,11 +189,14 @@ function swap_filenames {
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
 _k_help+=("Enabled zsh Plugins ")
-_k_help+=("$(printf -- '    %s\n' ${plugins[@]})'")
-_k_help+=("FileMan: ranger/joshuto")
-_k_help+=("Github Binary Release: stew")
-_k_help+=("Note Taking: nb/obsidian (GUI)")
-_k_help+=("Helpful tools:")
-_k_help+=("  nb, ack, visidata, tig, ncat, catimg, wcalc, fd, bat, eza, procs, atop, btm, sd, mcfly, dust, toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
+_k_help+=("$(printf -- '    %s\n' ${plugins[@]})")
+_k_help+=("
+FileMan: ranger/joshuto
+Github Binary Release: stew for ~/.local and bin for /usr
+Note Taking: nb/obsidian (GUI)
+Helpful tools:
+  nb, ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
+  fd, bat, eza, procs, atop, btm, sd, mcfly, dust, wcalc, catimg
+  toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
 echo "Check 'myhelp' for initialization notice"
 
