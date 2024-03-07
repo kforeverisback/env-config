@@ -192,11 +192,13 @@ _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})")
 _k_help+=("
 FileMan: ranger/joshuto
+Editor : nvim and micro
+Terminal: starship, fzf, zoxide, rg
 Github Binary Release: stew for ~/.local and bin for /usr
 Note Taking: nb/obsidian (GUI)
 Helpful tools:
   nb, ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
   fd, bat, eza, procs, atop, btm, sd, mcfly, dust, wcalc, catimg
-  toeki, tldr, gitui, grex, hyperfine, pueue, git-delta")
+  toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide")
 echo "Check 'myhelp' for initialization notice"
 
