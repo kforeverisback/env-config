@@ -1,5 +1,3 @@
-[core]
-	autocrlf = input
 [credential]
   #helper = cache --timeout=7200
 	helper = /usr/bin/git-credential-manager
