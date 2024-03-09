@@ -44,7 +44,7 @@ alias vi='nvim'
 alias vimdiff='nvim -d'
 alias incognito=' unset HISTFILE'
 alias nohist=' unset HISTFILE'
-alias calc='wcalc'
+alias calc='kalker'
 
 ## Awesome Rusted Tools
 alias fd='fd -H'
@@ -55,7 +55,7 @@ alias ls='eza'
 alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
-alias top='btm' # CompNletion installed in ~/.oh-my-zsh/completions
+alias top='btop' # CompNletion installed in ~/.oh-my-zsh/completions
 alias sd='sd' # Sed replacement https://github.com/chmln/sd
 alias du='dust -r' # https://github.com/bootandy/dust
 # Another one https://github.com/nachoparker/dutree
@@ -197,8 +197,8 @@ Terminal: starship, fzf, zoxide, rg
 Github Binary Release: stew for ~/.local and bin for /usr
 Note Taking: nb/obsidian (GUI)
 Helpful tools:
-  nb, ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
-  fd, bat, eza, procs, atop, btm, sd, mcfly, dust, wcalc, catimg
+  nb, ncdu, rmlint, stow(testing),ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
+  fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg
   toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide")
 echo "Check 'myhelp' for initialization notice"
 
