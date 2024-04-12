@@ -39,9 +39,9 @@ echo "Following files will be created/replaced:
 [[ -n "$OUT_FFMPEG"  ]] && echo "FFmpeg output file: $OUT_FFMPEG"
 
 sleep 3
-: > "$orig_index_file"
-: > "$OUT_DIR/$mod_index_file"
-: > "$OUT_DIR/$aria_dwnld_list"
+/bin/rm -f "$OUT_DIR/$orig_index_file"
+/bin/rm -f "$OUT_DIR/$mod_index_file"
+/bin/rm -f "$OUT_DIR/$aria_dwnld_list"
 #aria2c -d "$(dirname $tmp_index_file)" "\"$INDEX_URL\"" --out="$(basename $tmp_index_file)"
 echo aria2c "$INDEX_URL" -d "$OUT_DIR" --out="$orig_index_file"
 mkdir -p "$OUT_DIR"
@@ -78,7 +78,7 @@ done < <(cat "$OUT_DIR/$orig_index_file")
 
 # aria2c will download multiple files in parallel from "input" file, but it will only download one segment at a time
 # aria2c params: https://stackoverflow.com/questions/55166245/aria2c-parallel-download-parameters
-aria2c -Z -c -s 1 -j 1 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$OUT_DIR" -i "$OUT_DIR/$aria_dwnld_list"
+aria2c -Z -c -s 1 -j 5 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$OUT_DIR" -i "$OUT_DIR/$aria_dwnld_list"
 
 if [[ -n "$OUT_FFMPEG_FILE"  ]];then
 	echo "FFmpeg output file: $OUT_FFMPEG_FILE"
