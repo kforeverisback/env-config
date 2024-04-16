@@ -36,7 +36,7 @@ echo "Following files will be created/replaced:
    orig m3u8: $orig_index_file
     mod m3u8: $OUT_DIR/$mod_index_file
   dwnld list: $OUT_DIR/$aria_dwnld_list"
-[[ -n "$OUT_FFMPEG"  ]] && echo "FFmpeg output file: $OUT_FFMPEG"
+[[ -n "$OUT_FFMPEG" ]] && echo "FFmpeg output file: $OUT_FFMPEG"
 
 sleep 3
 /bin/rm -f "$OUT_DIR/$orig_index_file"
@@ -80,7 +80,8 @@ done < <(cat "$OUT_DIR/$orig_index_file")
 # aria2c params: https://stackoverflow.com/questions/55166245/aria2c-parallel-download-parameters
 aria2c -Z -c -s 1 -j 5 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$OUT_DIR" -i "$OUT_DIR/$aria_dwnld_list"
 
-if [[ -n "$OUT_FFMPEG_FILE"  ]];then
+if [[ -n "$OUT_FFMPEG_FILE" ]]; then
 	echo "FFmpeg output file: $OUT_FFMPEG_FILE"
-	fmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$OUT_DIR/$mod_index_file" -c copy "$OUT_FFMPEG_FILE"
+	ffmpeg -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$OUT_DIR/$mod_index_file" -c copy "$OUT_FFMPEG_FILE"
 fi
+
