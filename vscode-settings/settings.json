@@ -6,7 +6,7 @@
     "editor.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono, Fira Code Light, Consolas, 'Courier New', monospace",
     "editor.inlineSuggest.enabled": true,
     "editor.renderControlCharacters": true,
-    "editor.fontSize": 15,
+    "editor.fontSize": 13,
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "selection",
     "editor.linkedEditing": true,
@@ -23,7 +23,7 @@
     // C# Specific
     "[c#]": {
         "editor.codeActionsOnSave": {
-            "source.fixAll.csharp": true
+            "source.fixAll.csharp": "explicit"
         },
     },
     // Yaml
@@ -81,4 +81,5 @@
     "github.gitProtocol": "ssh",
     "github.codespaces.createCodespaceInNewWindow": true,
     "arduino.useArduinoCli": true,
+    "window.zoomLevel": -1,
 }

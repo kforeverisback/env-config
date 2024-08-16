@@ -417,9 +417,9 @@ bar {
 	i3bar_command i3bar
     # Kushal: Using i3status-rust
 	#status_command i3status
-        font pango:DejaVu Sans Mono, FontAwesome 11
+        font pango:DejaVu Sans Mono, FontAwesome 9
 	status_command i3status-rs ~/.config/i3status-rust/config.toml
-	position bottom
+	position top
 
 ## https://www.reddit.com/r/i3wm/comments/5qopxp/helpplease_help_me_switch_which_monitor_the_app/
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
