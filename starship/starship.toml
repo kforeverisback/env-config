@@ -2,10 +2,14 @@
 disabled = false
 only_with_files = true
 
+[azure]
+disabled = true
+
 [kubernetes]
 format = 'on [⛵ $context](dimmed green) '
 #format = 'on [⛵ $context \($namespace\)](dimmed green) '
-disabled = false
+#disabled = false
+disabled = true
 
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"

@@ -54,15 +54,25 @@ function clip {
 function wsl_mount_home {
   local wsl_path=/mnt/c/Windows/System32/wsl.exe
   [ ! -f ${wsl_path} ] && echo "${wsl_path} binary not found" && return 1
-  [ -z $WSL_DISTRO_NAME ] && echo "Proper WSL environment (env WSL_DISTRO_NAME) not found" && return 1
-  local mount_path=/mnt/wsl/${WSL_DISTRO_NAME}_$(echo ${USER})
+  local target_distro="$1"
+  local target_user="$1"
+  if [[ -z "$1" ]];then
+    echo "No distro was passed as arg. Using current ($WSL_DISTRO_NAME) distro"
+    target_distro=$WSL_DISTRO_NAME
+  else
+    target_distro=$($wsl_path -l -q | iconv -f utf16 -t Ascii | grep -oP "${target_distro}")
+    [[ -z "$target_distro" ]] && echo $target_distro not found && return 1
+    [[ -z "$target_user" ]] && echo "Input '$target_distro' username to mount its home-path" && return 1
+  fi
+  #[ -z $WSL_DISTRO_NAME ] && echo "Proper WSL environment (env WSL_DISTRO_NAME) not found" && return 1
+  local mount_path=/mnt/wsl/${target_distro}_$(echo ${USER})
   if [[ "$(mount -l | grep "${mount_path}")" != '' ]]; then
     echo "Mount at ${mount_path} already exists" && return 1
   fi
 
   mkdir ${mount_path}
   echo "Mounting '$HOME' to ${mount_path}"
-  ${wsl_path} -d "${WSL_DISTRO_NAME}" -u root mount --bind ${HOME} ${mount_path}
+  ${wsl_path} -d "${target_distro}" -u root mount --bind ${HOME} ${mount_path}
 }
 # ------------------- Export ----------------------
 # Go development
@@ -92,8 +102,9 @@ function _winapp {
 
 # WSL-X11 Specific Export
 function setDisplay {
-  export DISPLAY_OLD="${DISPLAY}"
-  export DISPLAY=$(win-ip):0
+  [[ -z $DISPLAY_OLD ]] && echo "Backing up \$DISPLAY in DISPLAY_OLD" && export DISPLAY_OLD="${DISPLAY}"
+  [[ "$1" == "" ]] && echo "Setting DISPLAY to $(win-ip):0" && export DISPLAY=$(win-ip):0
+  export DISPLAY=$1
 }
 export LIBGL_ALWAYS_INDIRECT=1
 # Important for WSL to automatically open default browser 
