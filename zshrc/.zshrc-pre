@@ -1,6 +1,6 @@
 # 3rd Party Plugins
 #Add plugins
-plugins+=(gitfast git-extras rust docker kubectl kubectx colorize zsh-autosuggestions fast-syntax-highlighting)
+plugins+=(gitfast git-extras cp colored-man-pages command-not-found docker kubectl zsh-autosuggestions fast-syntax-highlighting)
 # omz auto update
 zstyle ':omz:update' mode auto
 
