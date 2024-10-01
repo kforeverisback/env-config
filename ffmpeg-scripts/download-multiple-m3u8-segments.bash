@@ -1,46 +1,62 @@
 #!/bin/bash
 
 usage () {
-    echo "$0 <URL_FILE> <OUT_DIR> <FILE_INDEX> <NAME_PREFIX>"
-    echo "Params:
-    URL_FILE    - file containing list of index.m3u8 links
-    OUT_DIR     - output directory for mp4 files.
-    FILE_INDEX  - starting index value (default: 1)
-    NAME_PREFIX - Prefix of each file name (deafult: E).
-    "
+    echo "$0 <URL_FILE> <OUT_DIR> <SLEEP_BETWEEN>"
+    echo "
+Params:
+URL_FILE      - file containing list of index.m3u8 links
+OUT_DIR       - output directory for mp4 files.
+SLEEP_BETWEEN - sleep time between each output. Default: unset
+"
+    echo "Each line in the URL_FILE should have the format: <FILENAME><SPACE><INDEX_URL>
+Do not put spaces in the file name.
+Example url-file content:
+
+Episode-01.mp4 https://example.com/index.m3u8
+SomeFile.mp4 https://example.com/index2.m3u8
+S01E01.mp4 https://example.com/index4.m3u8
+S04E03.mp4 https://example.com/index6.m3u8
+"
     echo "Params can also be specified using environment variables of the same name."
 }
 
 # DEBUGGING
-# /bin/rm -rf ./output
-# /bin/rm -rf /tmp/segments-*
+/bin/rm -rf ./output
+/bin/rm -rf /tmp/segments-*
 
-URL_FILE=${1:-urls}
-OUT_DIR=${2:-output}
-FILE_INDEX=${3:-1}
-NAME_PREFIX=${4:-E}
-
-[[ -z "$URL_FILE" ]] && >&2 echo "'m3u8' URL file not provided." && usage && exit 1
+URL_FILE=${1:-$URL_FILE}
+OUT_DIR=${2:-$OUT_DIR}
+SLEEP_BETWEEN=${3:-$SLEEP_BETWEEN}
 
 [[ -z "$URL_FILE" || ! -f "$URL_FILE" ]] && >&2 echo "'m3u8' URL file not found." && usage && exit 1
-[[ -z "$FILE_INDEX" ]] && FILE_INDEX=1
-[[ -z "$OUT_DIR" ]] && OUT_DIR="."
+[[ -z "$OUT_DIR" ]] && >&2 echo "'m3u8' URL file not found." && usage && exit 1
 
 echo "Downloading files to : $OUT_DIR"
-echo "Starting index       : $FILE_INDEX"
-sleep 3
 
 set -e
-# for line in $(cat urls);do
+valid_url_regex='(https?|ftp|file)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]'
+# for url_line in $(cat "$URL_FILE");
 # done
-while IFS= read -r line
+mapfile -t files_n_urls < "$URL_FILE"
+# exit
+# while IFS= read -r url_line || [[ -n "$url_line" ]]
+for url_line in "${files_n_urls[@]}"
 do
-    [[ -z "$line" ]] && continue
-    OUT_FILE="$OUT_DIR/${NAME_PREFIX}$(printf '%02d' "$FILE_INDEX").mp4"
-    export OUT_FILE
-    export INDEX_URL="$line"
+    [[ -z "$url_line" ]] && continue
+    echo "Processing: $url_line"
+    file_name=$(echo "$url_line" | awk -F' ' '{print $1}')
+    url=$(echo "$url_line" | awk -F' ' '{print $2}')
+    if ! [[ $url =~ $valid_url_regex ]]; then
+        echo "Invalid Index URL: $url" >&2
+        continue
+    fi
+    OUT_FILE="$OUT_DIR/${file_name}"
+    # export OUT_FILE
+    # export INDEX_URL="$url"
     export RM_SEGMENTS="YES"
-    echo "  m3u8: $INDEX_URL, output: $OUT_FILE"
-    bash download-m3u8-segments.bash
+    echo "m3u8: $url, output: $OUT_FILE"
+    ./download-m3u8-segments.bash "$url" "$OUT_FILE"
+    echo -e "Done: $OUT_FILE \n"
+    [[ -n "$SLEEP_BETWEEN" ]] && sleep "$SLEEP_BETWEEN"
     FILE_INDEX=$((FILE_INDEX+1))
-done< <(cat urls)
+done #<"$URL_FILE"

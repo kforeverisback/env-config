@@ -75,7 +75,7 @@ while IFS= read -r line; do
 		echo "$segment_url" >>"$SEGMENTS_OUT_DIR/$aria_dwnld_list"
 	fi
 	#continue
-done < <(cat "$SEGMENTS_OUT_DIR/$orig_index_file")
+done < "$SEGMENTS_OUT_DIR/$orig_index_file"
 
 # aria2c will download multiple files in parallel from "input" file, but it will only download one segment at a time
 # aria2c params: https://stackoverflow.com/questions/55166245/aria2c-parallel-download-parameters
@@ -83,7 +83,7 @@ aria2c -Z -c -s 1 -j 5 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=
 echo
 if [[ -n "$OUT_FILE" ]]; then
 	echo "Running FFmpeg (output: $OUT_FILE)"
-	ffmpeg -hide_banner -loglevel warn -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$SEGMENTS_OUT_DIR/$mod_index_file" -c copy "$OUT_FILE"
+	ffmpeg -hide_banner -loglevel error -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$SEGMENTS_OUT_DIR/$mod_index_file" -c copy "$OUT_FILE"
 fi
 
 if [[ -n "$RM_SEGMENTS" ]]; then
