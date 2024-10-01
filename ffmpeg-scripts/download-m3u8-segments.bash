@@ -1,5 +1,5 @@
 #!/bin/bash
-
+shopt -os nounset pipefail errexit errtrace
 usage() {
 	echo "$0 <INDEX_URL> <OUT_FILE> <SEGMENTS_OUT_DIR> <RM_SEGMENTS>
 Params:
@@ -21,6 +21,8 @@ OUT_FILE="${2:-$OUT_FILE}"
 SEGMENTS_OUT_DIR="${3:-$SEGMENTS_OUT_DIR}"
 RM_SEGMENTS="${4:-$RM_SEGMENTS}"
 
+# No quotes on regex in a script!!
+[[ $OUT_FFMPEG_FILE =~ .*\.(mp4|mkv) ]] || (>&2 echo "Specify an output file with mp4|mkv extension" && exit 1)
 [[ -z "$INDEX_URL" ]] && >&2 echo "'m3u8' URL not provided." && usage && exit 1
 [[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename $OUT_FILE)-$RANDOM"
 
@@ -90,4 +92,3 @@ if [[ -n "$RM_SEGMENTS" ]]; then
 	echo "Removing $SEGMENTS_OUT_DIR"
 	/bin/rm -rf "$SEGMENTS_OUT_DIR"
 fi
-

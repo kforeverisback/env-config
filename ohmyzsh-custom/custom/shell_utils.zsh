@@ -194,11 +194,12 @@ _k_help+=("
 FileMan: ranger/joshuto
 Editor : nvim and micro
 Terminal: starship, fzf, zoxide, rg
-Github Binary Release: stew for ~/.local and bin for /usr
+Github Binary Release: bin (at ~/.local/bin) and at /usr/local/bin
 Note Taking: nb/obsidian (GUI)
+Markdown tools: slides, marp, glow
 Helpful tools:
-  nb, ncdu, rmlint, stow(testing),ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
-  fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg
+  nb, ncdu, rmlint, stow(testing), ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
+  fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg,
   toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide")
 echo "Check 'myhelp' for initialization notice"
 
