@@ -1,30 +1,31 @@
 #!/bin/bash
 shopt -os nounset pipefail errexit errtrace
 usage() {
-	echo "$0 <INDEX_URL> <OUT_FILE> <SEGMENTS_OUT_DIR> <RM_SEGMENTS>
+  echo "$0 <INDEX_URL> <OUT_FILE> <SEGMENTS_OUT_DIR> <RM_SEGMENTS>
 Params:
-  INDEX_URL   - URL pointing to an m3u8 file.
-                The link would serve as a base URL for downloading segments,
-                unless the segments have full url
-  OUT_FILE    - If set, in addition to downloading segment files,
-                an OUT_FILE file will be created from the segments.
-  SEGMENTS_OUT_DIR     - output directory to download m3u8 segments to.
-				Default: /tmp/segments-\$RANDOM.
-  RM_SEGMENTS - If set, will remove the downloaded segments after creating OUT_FILE.
-				Default: not set.
+      INDEX_URL        - URL pointing to an m3u8 file.
+                       The link would serve as a base URL for downloading segments,
+                       unless the segments have full url
+      OUT_FILE         - If set, in addition to downloading segment files,
+                       an OUT_FILE file will be created from the segments.
+      SEGMENTS_OUT_DIR - output directory to download m3u8 segments to.
+			     	           Default: /tmp/segments-\$RANDOM.
+      RM_SEGMENTS      - If set, will remove the downloaded segments after creating OUT_FILE.
+				               Default: not set.
 "
-	echo "Params can also be specified using environment variables of the same name."
+  echo "Params can also be specified using environment variables of the same name."
 }
-
+set +u # Don't check for unbound variables
 INDEX_URL="${1:-$INDEX_URL}"
 OUT_FILE="${2:-$OUT_FILE}"
 SEGMENTS_OUT_DIR="${3:-$SEGMENTS_OUT_DIR}"
 RM_SEGMENTS="${4:-$RM_SEGMENTS}"
+set -u
 
-# No quotes on regex in a script!!
-[[ $OUT_FFMPEG_FILE =~ .*\.(mp4|mkv) ]] || (>&2 echo "Specify an output file with mp4|mkv extension" && exit 1)
 [[ -z "$INDEX_URL" ]] && >&2 echo "'m3u8' URL not provided." && usage && exit 1
 [[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename $OUT_FILE)-$RANDOM"
+# No quotes on regex in a script!!
+[[ -z $OUT_FILE ]] || [[ $OUT_FILE =~ .*\.(mp4|mkv) ]] || (>&2 echo "Specify an output file with mp4|mkv extension" && exit 1)
 
 orig_index_file="aria2c-orig.m3u8"
 mod_index_file="${orig_index_file/orig/mod}"
@@ -55,28 +56,28 @@ echo "Base m3u8 Url: ${base_url}"
 valid_url_regex='(https?|ftp|file)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]'
 
 while IFS= read -r line; do
-	[[ -z "$line" ]] && continue
-	if (grep -oE '^#.*' <<<"$line" >/dev/null); then
-		# Its a # EXT line, not real segment link
-		echo "$line" >>"$SEGMENTS_OUT_DIR/$mod_index_file"
-		continue
-	else
-		# Its a segment link/name
-		# Now check if its a full URL
-		if [[ $line =~ $valid_url_regex ]]; then
-			# echo "Link valid"
-			# only output the base-file-name
-			segment_name_out="$(basename "$line")"
-			segment_url="$line"
-		else
-			# Its not a full url, but just a filename
-			segment_name_out="$line"
-			segment_url="${base_url}/${line}"
-		fi
-		echo "$segment_name_out" >>"$SEGMENTS_OUT_DIR/$mod_index_file"
-		echo "$segment_url" >>"$SEGMENTS_OUT_DIR/$aria_dwnld_list"
-	fi
-	#continue
+  [[ -z "$line" ]] && continue
+  if (grep -oE '^#.*' <<<"$line" >/dev/null); then
+    # Its a # EXT line, not real segment link
+    echo "$line" >>"$SEGMENTS_OUT_DIR/$mod_index_file"
+    continue
+  else
+    # Its a segment link/name
+    # Now check if its a full URL
+    if [[ $line =~ $valid_url_regex ]]; then
+      # echo "Link valid"
+      # only output the base-file-name
+      segment_name_out="$(basename "$line")"
+      segment_url="$line"
+    else
+      # Its not a full url, but just a filename
+      segment_name_out="$line"
+      segment_url="${base_url}/${line}"
+    fi
+    echo "$segment_name_out" >>"$SEGMENTS_OUT_DIR/$mod_index_file"
+    echo "$segment_url" >>"$SEGMENTS_OUT_DIR/$aria_dwnld_list"
+  fi
+  #continue
 done < "$SEGMENTS_OUT_DIR/$orig_index_file"
 
 # aria2c will download multiple files in parallel from "input" file, but it will only download one segment at a time
@@ -84,11 +85,11 @@ done < "$SEGMENTS_OUT_DIR/$orig_index_file"
 aria2c -Z -c -s 1 -j 5 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$SEGMENTS_OUT_DIR" -i "$SEGMENTS_OUT_DIR/$aria_dwnld_list" --download-result=hide
 echo
 if [[ -n "$OUT_FILE" ]]; then
-	echo "Running FFmpeg (output: $OUT_FILE)"
-	ffmpeg -hide_banner -loglevel error -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$SEGMENTS_OUT_DIR/$mod_index_file" -c copy "$OUT_FILE"
+  echo "Running FFmpeg (output: $OUT_FILE)"
+  ffmpeg -hide_banner -loglevel error -protocol_whitelist file,http,https,tcp,tls,crypto -allowed_extensions ALL -i "$SEGMENTS_OUT_DIR/$mod_index_file" -c copy "$OUT_FILE"
 fi
 
 if [[ -n "$RM_SEGMENTS" ]]; then
-	echo "Removing $SEGMENTS_OUT_DIR"
-	/bin/rm -rf "$SEGMENTS_OUT_DIR"
+  echo "Removing $SEGMENTS_OUT_DIR"
+  /bin/rm -rf "$SEGMENTS_OUT_DIR"
 fi
