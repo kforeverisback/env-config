@@ -1,6 +1,27 @@
 # 3rd Party Plugins
 #Add plugins
-plugins+=(gitfast git-extras cp colored-man-pages command-not-found docker kubectl zsh-autosuggestions fast-syntax-highlighting)
+plugins+=(gitfast
+cp
+git-extras
+#kubectl
+direnv
+git-commit
+colorize
+colored-man-pages
+copyfile
+copypath
+tmux
+command-not-found
+zsh-completions
+zsh-autosuggestions
+fast-syntax-highlighting)
 # omz auto update
 zstyle ':omz:update' mode auto
+
+# zsh-completion setup
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# Disable MAGIC-FUNCTIONS (like url-auto-encode, bracket paste magic etc)
+DISABLE_MAGIC_FUNCTIONS=true
+# Disable only the url-auto-encode magic
+#zstyle ':urlglobber' url-other-schema
 
