@@ -23,9 +23,14 @@ RM_SEGMENTS="${4:-$RM_SEGMENTS}"
 set -u
 
 [[ -z "$INDEX_URL" ]] && >&2 echo "'m3u8' URL not provided." && usage && exit 1
-[[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename $OUT_FILE)-$RANDOM"
+[[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename "$OUT_FILE")-$(md5sum <<<"$INDEX_URL")"
+[[ -z "$OUT_FILE" ]] && >&2 echo "Output file not provided." && usage && exit 1
+[[ -z "$RM_SEGMENTS" ]] && RM_SEGMENTS=""
 # No quotes on regex in a script!!
-[[ -z $OUT_FILE ]] || [[ $OUT_FILE =~ .*\.(mp4|mkv) ]] || (>&2 echo "Specify an output file with mp4|mkv extension" && exit 1)
+if [[ -z $OUT_FILE ]] || ! [[ $OUT_FILE =~ .*\.(mp4|mkv|mp3) ]]; then
+  >&2 echo "Specify an output file with mp4|mkv extension"
+  exit 1
+fi
 
 orig_index_file="aria2c-orig.m3u8"
 mod_index_file="${orig_index_file/orig/mod}"
@@ -78,7 +83,7 @@ while IFS= read -r line; do
     echo "$segment_url" >>"$SEGMENTS_OUT_DIR/$aria_dwnld_list"
   fi
   #continue
-done < "$SEGMENTS_OUT_DIR/$orig_index_file"
+done <"$SEGMENTS_OUT_DIR/$orig_index_file"
 
 # aria2c will download multiple files in parallel from "input" file, but it will only download one segment at a time
 # aria2c params: https://stackoverflow.com/questions/55166245/aria2c-parallel-download-parameters
