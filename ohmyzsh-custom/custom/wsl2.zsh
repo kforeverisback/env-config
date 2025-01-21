@@ -127,4 +127,5 @@ _k_help+=("  sudo update-binfmts --disable cli : If windows drive programs are n
 _k_help+=("  Check wslu packages (wslview, wslvar etc)")
 
 # Calling function to initialize
-update-keychain
+# using ssh-agent plugin from OMZ
+# update-keychain
