@@ -1,7 +1,8 @@
 # 3rd Party Plugins
 #Add plugins
 plugins+=(gitfast
-  git-commit
+  git-commit-mod
+  # git-commit   # Using my own version of git-cmmit 
   git-extras
   copyfile
   copypath
@@ -20,6 +21,10 @@ plugins+=(gitfast
   fast-syntax-highlighting)
 # omz auto update
 zstyle ':omz:update' mode auto
+# zsh-completion setup
+# fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+# Disable MAGIC-FUNCTIONS (like url-auto-encode, bracket paste magic etc)
+DISABLE_MAGIC_FUNCTIONS=true
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent lifetime 3h
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
