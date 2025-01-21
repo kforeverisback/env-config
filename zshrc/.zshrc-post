@@ -1,44 +1,25 @@
-eval "$(zoxide init zsh)"
-alias cd=z # use z instead of cd
-eval "$(starship init zsh)"
+alias cd=z # For ZOxide to learn my dir pattern
 # zsh-syntax-plugin is super slow when pasting long string
 # See: https://github.com/zsh-users/zsh-syntax-highlighting/issues/513
 # Here we are limiting highlight length
 export ZSH_HIGHLIGHT_MAXLENGTH=36
 
-# source git-extras
-source ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/git-extras-completion.zsh
-
-# caddy completion
-# command -v caddy >/dev/null && (caddy completion zsh > "${fpath[1]}/_caddy")
-# just completion, do once only
-# just --completions zsh > "/home/kushal/.oh-my-zsh/completions/_just"
-
-# Atuin Shell history configuration
-#eval "$(atuin init zsh)"
-
 # McFly Configuration
 #
-eval "$(mcfly init zsh)"
-#export MCFLY_FUZZY=true
-export MCFLY_HISTORY_LIMIT=10000
-export MCFLY_RESULTS=100
+#eval "$(mcfly init zsh)"
+#export MCFLY_HISTORY_LIMIT=10000
+#export MCFLY_RESULTS=35
 #export MCFLY_FUZZY=2
 #export MCFLY_KEY_SCHEME=vim
-
-# Disable only the url-auto-encode magic
-#zstyle ":urlglobber" url-other-schema
-
-# [[ -x "$(command -v gh)" ]] && eval "$(gh completion -s zsh)"
-# ZShell Configuration
-# https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
-autoload -U select-word-style
-select-word-style bash
-# Most flexible solution of
-#WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
-bindkey '^U' backward-kill-line
-bindkey '^Y' yank
-
+export PATH=$PATH:$HOME/.krew/bin
+# Using oh-my-zsh plugin "ssh-agent" instead
+# This will make sure we use existing keychain if the /tmp/ssh-sock file exists
+# [[ -f $HOME/.keychain/$(hostname)-sh ]] && [[ -f $(grep -oP '/.*ssh-.*\d+'<$HOME/.keychain/$(hostname)-sh) ]] && update-keychain
+# [[ -f $HOME/.keychain/$(hostname)-sh ]] && /bin/ps $((grep -oP 'SSH_AGENT_PID=(\d+)' | grep -oP '\d+')<$HOME/.keychain/$(hostname)-sh) > /dev/null && update-keychain
+# eval "$(atuin init zsh --disable-up-arrow)"
+# using atuin instead of mcfly
+eval "$(atuin init zsh )"
+[[ -f /usr/share/doc/git-extras/git-extras-completion.zsh ]] && source /usr/share/doc/git-extras/git-extras-completion.zsh
+#
+#autoload -U +X bashcompinit && bashcompinit
+[[ -f /etc/bash-completion/completions/az ]] && source /etc/bash-completion/completions/az

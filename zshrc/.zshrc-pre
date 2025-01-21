@@ -1,27 +1,27 @@
 # 3rd Party Plugins
 #Add plugins
 plugins+=(gitfast
-cp
-git-extras
-#kubectl
-direnv
-git-commit
-colorize
-colored-man-pages
-copyfile
-copypath
-tmux
-command-not-found
-zsh-completions
-zsh-autosuggestions
-fast-syntax-highlighting)
+  git-commit
+  git-extras
+  copyfile
+  copypath
+  command-not-found
+  extract
+  history
+  cp
+  colored-man-pages
+  colorize
+  docker
+  eza
+  ssh-agent
+  starship
+  zoxide
+  zsh-autosuggestions
+  fast-syntax-highlighting)
 # omz auto update
 zstyle ':omz:update' mode auto
-
-# zsh-completion setup
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-# Disable MAGIC-FUNCTIONS (like url-auto-encode, bracket paste magic etc)
-DISABLE_MAGIC_FUNCTIONS=true
-# Disable only the url-auto-encode magic
-#zstyle ':urlglobber' url-other-schema
-
+# ssh-agent config
+zstyle :omz:plugins:ssh-agent lifetime 3h
+zstyle :omz:plugins:ssh-agent agent-forwarding yes
+zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms}
+#fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
