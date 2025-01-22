@@ -110,7 +110,6 @@ export LIBGL_ALWAYS_INDIRECT=1
 # Important for WSL to automatically open default browser 
 export BROWSER=wslview
 
-echo "Updating KeyChain"
 alias update_keychain=update-keychain
 alias update_clock=update-clock
 
@@ -128,4 +127,5 @@ _k_help+=("  Check wslu packages (wslview, wslvar etc)")
 
 # Calling function to initialize
 # using ssh-agent plugin from OMZ
+# echo "Updating KeyChain"
 # update-keychain
