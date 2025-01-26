@@ -90,6 +90,7 @@ export KUBE_EDITOR="nvim"
 # ----------------------- End Exports ----------------------
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
 which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
+which git-credential-manager &> /dev/null || ( echo "Adding git-credential-manager to /usr/local/bin/git-credential-manager from Windows Git installation." && sudo ln -s /mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe /usr/local/bin/git-credential-manager)
 function _winapp {
   prog_path=$(wslpath $1);
   prog_name=$(basename "$prog_path");
