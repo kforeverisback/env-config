@@ -1,0 +1,3 @@
+[wsl2]
+#kernel=C:\\Users\\mekram\\bzImage
+#kernelCommandLine = cgroup_no_v1=all
