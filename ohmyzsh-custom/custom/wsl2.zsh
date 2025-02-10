@@ -78,8 +78,8 @@ function wsl_mount_home {
 # Go development
 # Kushal: Instead of "brew --prefix golang" we are replacing this command with output of "brew --prefix golang"
 #export GOROOT="$(brew --prefix golang)/libexec"
-export GOPATH="${HOME}/Go"
-export GOROOT="/usr/local/go/"
+#export GOPATH="${HOME}/Go"
+#export GOROOT="/usr/local/go/"
 #test -d "${GOPATH}" || mkdir "${GOPATH}"
 #test -d "${GOPATH}/src/github.com" || mkdir -p "${GOPATH}/src/github.com"
 [[ "${PATH#*:${GOPATH}/bin}" == "$PATH" ]] && export PATH="$PATH:${GOPATH}/bin"
@@ -89,6 +89,7 @@ export GOROOT="/usr/local/go/"
 export KUBE_EDITOR="nvim"
 # ----------------------- End Exports ----------------------
 [[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/MicrosoftVSCode/bin"
+[[ "${PATH#*:/mnt/c/Users/mekram/AppData/Local/Programs/Microsoft VS Code Insiders/bin}" == "$PATH" ]] && export PATH="$PATH:/mnt/c/Users/mekram/AppData/Local/Programs/Microsoft VS Code Insiders/bin"
 which winget &> /dev/null || ln -s /mnt/c/Users/mekram/AppData/Local/Microsoft/WindowsApps/winget.exe $HOME/.local/bin/winget
 which git-credential-manager &> /dev/null || ( echo "Adding git-credential-manager to /usr/local/bin/git-credential-manager from Windows Git installation." && sudo ln -s /mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe /usr/local/bin/git-credential-manager)
 function _winapp {
