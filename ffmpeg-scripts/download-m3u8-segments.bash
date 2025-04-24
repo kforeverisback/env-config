@@ -12,6 +12,7 @@ Params:
 			     	           Default: /tmp/segments-\$RANDOM.
       RM_SEGMENTS      - If set, will remove the downloaded segments after creating OUT_FILE.
 				               Default: not set.
+      PARALLEL_FILES   - Number of parallel segments to download
 "
   echo "Params can also be specified using environment variables of the same name."
 }
@@ -20,12 +21,14 @@ INDEX_URL="${1:-$INDEX_URL}"
 OUT_FILE="${2:-$OUT_FILE}"
 SEGMENTS_OUT_DIR="${3:-$SEGMENTS_OUT_DIR}"
 RM_SEGMENTS="${4:-$RM_SEGMENTS}"
+PARALLEL_FILES="${5:-$PARALLEL_FILES}"
 set -u
 
 [[ -z "$INDEX_URL" ]] && >&2 echo "'m3u8' URL not provided." && usage && exit 1
-[[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename "$OUT_FILE")-$(md5sum <<<"$INDEX_URL")"
+[[ -z "$SEGMENTS_OUT_DIR" ]] && SEGMENTS_OUT_DIR="/tmp/segments-$(basename "$OUT_FILE")-$(md5sum <<<"$INDEX_URL" | head -c 32)"
 [[ -z "$OUT_FILE" ]] && >&2 echo "Output file not provided." && usage && exit 1
 [[ -z "$RM_SEGMENTS" ]] && RM_SEGMENTS=""
+[[ -z "$PARALLEL_FILES" ]] && PARALLEL_FILES="5"
 # No quotes on regex in a script!!
 if [[ -z $OUT_FILE ]] || ! [[ $OUT_FILE =~ .*\.(mp4|mkv|mp3) ]]; then
   >&2 echo "Specify an output file with mp4|mkv extension"
@@ -87,7 +90,7 @@ done <"$SEGMENTS_OUT_DIR/$orig_index_file"
 
 # aria2c will download multiple files in parallel from "input" file, but it will only download one segment at a time
 # aria2c params: https://stackoverflow.com/questions/55166245/aria2c-parallel-download-parameters
-aria2c -Z -c -s 1 -j 5 -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$SEGMENTS_OUT_DIR" -i "$SEGMENTS_OUT_DIR/$aria_dwnld_list" --download-result=hide
+aria2c -Z -c -s 1 -j $PARALLEL_FILES -x 1 -k 1M --console-log-level=warn --auto-file-renaming=false -d "$SEGMENTS_OUT_DIR" -i "$SEGMENTS_OUT_DIR/$aria_dwnld_list" --download-result=hide
 echo
 if [[ -n "$OUT_FILE" ]]; then
   echo "Running FFmpeg (output: $OUT_FILE)"
