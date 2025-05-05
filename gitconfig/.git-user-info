@@ -1,6 +1,10 @@
 [user]
-    name = Kushal Azim Ekram
-    email = kforeverisback@gmail.com
-    mail = kforeverisback@gmail.com
+  name = Kushal Azim Ekram
+  email = 11367790+kforeverisback@users.noreply.github.com
+  mail = 11367790+kforeverisback@users.noreply.github.com
+[author]
+  name = Kushal Azim Ekram
+  email = 11367790+kforeverisback@users.noreply.github.com
+	mail = 11367790+kforeverisback@users.noreply.github.com
 #[commit]
 #   template = /Users/mekram/.stCommitMsg
