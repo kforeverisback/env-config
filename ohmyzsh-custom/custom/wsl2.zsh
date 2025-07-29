@@ -40,6 +40,21 @@ function update-clock {
   echo "date: " $(date)
 }
 
+function git-local-private-email {
+  local priv_email="$1"
+  local priv_name="$2"
+  [[ -z $priv_name ]] && echo "No name provided. Using 'Kushal Azim Ekram' as default" && priv_name='Kushal Azim Ekram'
+  [[ -z $priv_email ]] && echo "No email provided" && return 1
+  echo "Setting authot/user email to $priv_email"
+  echo "setting author/user name  to Kushal Azim Ekram"
+  git config user.email   "$priv_email"
+  git config author.email "$priv_email"
+  git config author.mail  "$priv_email"
+  git config user.mail    "$priv_email"
+  git config user.name 'Kushal Azim Ekram'
+  git config author.name 'Kushal Azim Ekram'
+}
+
 # Copy from WSL terminal to Windows Clipboard
 # Sort of a xclip alternative
 function clip {
@@ -115,7 +130,7 @@ export BROWSER=wslview
 alias update_keychain=update-keychain
 alias update_clock=update-clock
 
-_k_help+=("Useful prog: trickle")
+_k_help+=("Useful prog: zathura (pdf), trickle")
 _k_help+=("Useful functions:")
 _k_help+=("  wsl-ip : wsl2 network ip")
 _k_help+=("  win-ip : windows virt network IP")
