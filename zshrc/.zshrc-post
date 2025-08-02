@@ -11,14 +11,13 @@ export ZSH_HIGHLIGHT_MAXLENGTH=36
 #export MCFLY_RESULTS=35
 #export MCFLY_FUZZY=2
 #export MCFLY_KEY_SCHEME=vim
-export PATH=$PATH:$HOME/.krew/bin
 # Using oh-my-zsh plugin "ssh-agent" instead
 # This will make sure we use existing keychain if the /tmp/ssh-sock file exists
 # [[ -f $HOME/.keychain/$(hostname)-sh ]] && [[ -f $(grep -oP '/.*ssh-.*\d+'<$HOME/.keychain/$(hostname)-sh) ]] && update-keychain
 # [[ -f $HOME/.keychain/$(hostname)-sh ]] && /bin/ps $((grep -oP 'SSH_AGENT_PID=(\d+)' | grep -oP '\d+')<$HOME/.keychain/$(hostname)-sh) > /dev/null && update-keychain
-# eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(atuin init zsh --disable-up-arrow)"
 # using atuin instead of mcfly
-eval "$(atuin init zsh )"
+# eval "$(atuin init zsh )"
 [[ -f /usr/share/doc/git-extras/git-extras-completion.zsh ]] && source /usr/share/doc/git-extras/git-extras-completion.zsh
 #
 #autoload -U +X bashcompinit && bashcompinit
@@ -34,3 +33,6 @@ zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 bindkey '^U' backward-kill-line
 bindkey '^Y' yank
+
+export PATH=$PATH:$HOME/go/bin
+alias lg=lazygit

@@ -1,10 +1,17 @@
 # 3rd Party Plugins
 #Add plugins
-plugins+=(gitfast
+plugins+=(
+  sudo
+  web-search
+  copyfile
+  copybuffer
+  #dirhistory
+  gitfast
   git-commit-mod
+  git-escape-magic
+  git
   # git-commit   # Using my own version of git-cmmit 
   git-extras
-  copyfile
   copypath
   command-not-found
   extract
@@ -15,10 +22,16 @@ plugins+=(gitfast
   docker
   eza
   ssh-agent
-  starship
+  github
+  # starship
   zoxide
   zsh-autosuggestions
-  fast-syntax-highlighting)
+  fast-syntax-highlighting
+)
+# eza config
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'git-status' yes
 # omz auto update
 zstyle ':omz:update' mode auto
 # zsh-completion setup
@@ -29,4 +42,5 @@ DISABLE_MAGIC_FUNCTIONS=true
 zstyle :omz:plugins:ssh-agent lifetime 3h
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
 zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms}
-#fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit

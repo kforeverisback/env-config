@@ -50,9 +50,6 @@ alias calc='kalker'
 alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 
-# Unalias ls and ll
-alias ls='eza'
-alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btop' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -67,6 +64,7 @@ alias rgi='rg -i'
 alias pdfview='evince'
 alias notes='nb' # Replacing https://github.com/pimterry/notes with https://xwmx.github.io/nb, which ism ore Obsidian like
 alias rsync='rsync -azvhP' # [a]rchive (to preserve attributes) and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [P]rogress
+alias trash='gtrash put'
 # ---------------- Alias -------------------
 
 # ----------------- Func -------------------
@@ -127,7 +125,7 @@ function myhelp {
     printf '%s\n' "${_k_help[@]}"
 }
 
-function extract {
+function _extract_use_omz_extract_plugin {
   if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz|.zlib|.cso>"
