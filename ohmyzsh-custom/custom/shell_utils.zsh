@@ -34,7 +34,7 @@ alias g='git'
 # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
 #alias cp='cp_adv_mod_8.32 -g'
 #alias mv='mv_adv_mod_8.32 -g'
-alias rm="echo Use del/trash. /bin/rm is aliased to xxrm"
+alias rm='echo "Use trash or \\\\rm."'
 alias xxrm='/bin/rm -i'
 alias grm="rm -i"
 # If you're having SpaceVim issues with NVim, disable nvim aliases
@@ -199,6 +199,7 @@ Helpful tools:
   nb, ncdu, rmlint, stow(testing),ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
   fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg
   toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide
-  Trying new tools: trippy, kmon, hx, skim")
+  Trying new tools: caligula, dysk, netscanner, trippy, kmon, hx, skim, hexyl(hex editor),
+                    xh (httpie alt), zathura (doc viewer)")
 echo "Check 'myhelp' for initialization notice"
 
