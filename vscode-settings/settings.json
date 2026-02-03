@@ -7,6 +7,7 @@
     "editor.inlineSuggest.enabled": true,
     "editor.renderControlCharacters": true,
     "editor.fontSize": 14,
+    "editor.fontLigatures": true,
     "editor.wordWrap": "on",
     "editor.renderWhitespace": "selection",
     "editor.linkedEditing": true,
@@ -39,6 +40,7 @@
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
+
     // Html
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
@@ -47,22 +49,31 @@
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/.factorypath": true
+        "**/.factorypath": true,
+        "**/.trunk/*actions/": true,
+        "**/.trunk/*logs/": true,
+        "**/.trunk/*notifications/": true,
+        "**/.trunk/*out/": true,
+        "**/.trunk/*plugins/": true
     },
     // Exntensions
     // Golang
     "go.useLanguageServer": true,
     "go.toolsManagement.autoUpdate": true,
+    "[go]": {
+        "editor.insertSpaces": false,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "golang.go",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
     // Python
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
     },
     // Java
     "redhat.telemetry.enabled": true,
-    "omnisharp.enableRoslynAnalyzers": true,
-    "omnisharp.enableEditorConfigSupport": true,
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOsverrodeDefaultValue",
-    // Indent Rainbow
     "indentRainbow.updateDelay": 500, // lower number will cost more resources
     // To-do Tree config
     "todo-tree.tree.showCountsInTree": false,
@@ -81,6 +92,22 @@
     "github.gitProtocol": "ssh",
     "github.codespaces.createCodespaceInNewWindow": true,
     "arduino.useArduinoCli": true,
-    "window.zoomLevel": -1,
     "makefile.configureOnOpen": true,
+    "python.analysis.typeCheckingMode": "standard",
+    "editor.inlineSuggest.edits.showCollapsed": true,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "files.watcherExclude": {
+        "**/.trunk/*actions/": true,
+        "**/.trunk/*logs/": true,
+        "**/.trunk/*notifications/": true,
+        "**/.trunk/*out/": true,
+        "**/.trunk/*plugins/": true
+    },
+    "yaml.schemas": {
+        "/home/mekram/.vscode-insiders/extensions/continue.continue-1.1.61-linux-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ]
+    },
+    "explorer.confirmDelete": false,
+    "python.defaultInterpreterPath": "/bin/python",
 }

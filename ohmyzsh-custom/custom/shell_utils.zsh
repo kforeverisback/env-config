@@ -50,9 +50,12 @@ alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 alias calc='kalker'
 
+<<<<<<< HEAD
 # Unalias ls and ll
 # alias ls='eza'
 alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
+=======
+>>>>>>> 9176a09392b7f5a1d1d61655b07f6b7ec955b4bc
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btop' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -67,7 +70,11 @@ alias rgi='rg -i'
 alias pdfview='evince'
 alias notes='nb' # Replacing https://github.com/pimterry/notes with https://xwmx.github.io/nb, which ism ore Obsidian like
 alias rsync='rsync -azvhP' # [a]rchive (to preserve attributes) and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [P]rogress
+<<<<<<< HEAD
 
+=======
+alias trash='gtrash put'
+>>>>>>> 9176a09392b7f5a1d1d61655b07f6b7ec955b4bc
 # ---------------- Alias -------------------
 
 # ----------------- Func -------------------
@@ -141,7 +148,7 @@ function git-set-user {
   git config author.name 'Kushal Azim Ekram'
 }
 
-function extract {
+function _extract_use_omz_extract_plugin {
   if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz|.zlib|.cso>"
@@ -209,12 +216,13 @@ function myhelp {
 _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})")
 _k_help+=("
-FileMan: ranger/joshuto
+FileMan: ranger, yazi, joshuto
 Editor : nvim and micro
 Terminal: starship, fzf, zoxide, rg
 Github Binary Release: bin (at ~/.local/bin) and at /usr/local/bin
 Note Taking: nb/obsidian (GUI)
 Markdown tools: slides, marp, glow
+AI Tools: gemini, aider
 Helpful tools:
   Tools (regular):
     tig, lazygit, bat, fd, eza, btm, btop, dust, kalker, tldr, zoxide, git-delta
@@ -222,7 +230,8 @@ Helpful tools:
     nb, ncdu, rmlint, stow(testing), ack, visidata, jq-stuff(jid, jqp, faq), ncat, procs,
     sd, catimg, toeki, gitui, grex, hyperfine, pueue
   New tools:
-    numbat(calc), caligula, dysk, netscanner, trippy, kmon, hx, skim, hexyl(hex editor),
-    xh (httpie alt), zathura (doc viewer)")
+    gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
+    trippy, kmon, hx, skim, hexyl(hex editor), xh (httpie alt), zathura (doc viewer)
+    navi (cmd search)")
 echo "Check 'myhelp' for initialization notice"
 

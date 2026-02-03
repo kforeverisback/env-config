@@ -30,10 +30,14 @@
   dump = cat-file -p
   dt = difftool
   #History
-  ls = log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(dim red)%ad %C(reset)%s%C(blue) [%an]' --decorate --graph --date=short
-  ll = log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(dim red)%ar %C(reset)%s%C(blue) [%an]' --decorate --graph --numstat
-  lnc = log --pretty=format:'%h %s [%cn]'
-  adog = log --all --decorate --oneline --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+  ls = log --color --pretty=format:'%C(yellow)%h%C(cyan)%d %C(dim red)%ad %C(reset)%s%C(blue) [%an]' --decorate --graph --date=short
+  lsn = lpn
+  lpn = ls -n
+  l = lsn 5
+  ll = log --color --pretty=format:'%C(yellow)%h%C(cyan)%d %C(dim red)%ar %C(reset)%s%C(blue) [%an]' --decorate --graph --numstat
+  lln = ll -n
+  lnc = log --color --pretty=format:'%C(yellow)%h %C(reset)%s %C(blue)[%cn]'
+  adog = log --color --all --decorate --oneline --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
   #File Log
   filelog = log -u
   fl = log -u
