@@ -50,12 +50,9 @@ alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
 alias calc='kalker'
 
-<<<<<<< HEAD
 # Unalias ls and ll
 # alias ls='eza'
 alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
-=======
->>>>>>> 9176a09392b7f5a1d1d61655b07f6b7ec955b4bc
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btop' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -70,11 +67,7 @@ alias rgi='rg -i'
 alias pdfview='evince'
 alias notes='nb' # Replacing https://github.com/pimterry/notes with https://xwmx.github.io/nb, which ism ore Obsidian like
 alias rsync='rsync -azvhP' # [a]rchive (to preserve attributes) and compressed ([z]ipped) mode with [v]erbose and [h]uman-readable [P]rogress
-<<<<<<< HEAD
-
-=======
 alias trash='gtrash put'
->>>>>>> 9176a09392b7f5a1d1d61655b07f6b7ec955b4bc
 # ---------------- Alias -------------------
 
 # ----------------- Func -------------------
