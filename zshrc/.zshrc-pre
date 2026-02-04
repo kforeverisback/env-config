@@ -13,7 +13,6 @@ plugins+=(
   # git-commit   # Using my own version of git-cmmit 
   git-extras
   copypath
-  command-not-found
   extract
   history
   cp
@@ -41,6 +40,6 @@ DISABLE_MAGIC_FUNCTIONS=true
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent lifetime 3h
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
-zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms}
+zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms,mynatek}
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit

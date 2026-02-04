@@ -2,7 +2,8 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
   #pager = ~/.local/share/diff-so-fancy/diff-so-fancy | less --tabs=4 -RFX
-  pager = delta
+  #pager = delta
+  pager = diffnav
   whitespace = blank-at-eol,blank-at-eof,space-before-tab
 [includeIf "gitdir:/Users/"]
   path = ~/.gitconfig-mac

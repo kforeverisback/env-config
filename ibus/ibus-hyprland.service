@@ -1,0 +1,16 @@
+[Unit]
+Description=Intelligent Input Bus (IBus) Daemon
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=dbus
+BusName=org.freedesktop.IBus
+ExecStart=/usr/bin/ibus-daemon --replace --xim --panel disable --type wayland
+ExecReload=/usr/bin/ibus restart
+ExecStop=/usr/bin/ibus exit
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+

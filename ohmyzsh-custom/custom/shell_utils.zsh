@@ -31,6 +31,7 @@ alias dokcer='docker'
 alias kctl='kubectl'
 alias k='kubectl'
 alias g='git'
+alias ip='ip -color=auto'
 # Built 'cp' from scratch with Advanced mod: https://github.com/jarun/advcpmvn
 #alias cp='cp_adv_mod_8.32 -g'
 #alias mv='mv_adv_mod_8.32 -g'
@@ -200,7 +201,7 @@ Helpful tools:
   nb, ncdu, rmlint, stow(testing),ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
   fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg
   toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide
-  Trying new tools: gum, posting, fx(json), gping, ctop, caligula, dysk, netscanner, trippy, kmon,
+  Trying new tools: systemctl-tui, systemd-manager-tui, gum, posting, fx(json), gping, ctop, caligula, dysk, netscanner, trippy, kmon,
                     hx, skim, hexyl(hex editor), xh (httpie alt), zathura (doc viewer)
                     navi(chstsh searchable)")
 echo "Check 'myhelp' for initialization notice"

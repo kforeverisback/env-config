@@ -1,7 +1,8 @@
 {
     // General
     "editor.suggestSelection": "first",
-    // "terminal.integrated.fontFamily": "Cascadia Mono PL, CaskaydiaCove Nerd Font Mono",
+    "terminal.integrated.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono, monospace",
+    "editor.fontFamily": "'JetBrainsMono NFM Light', 'Hack Nerd Font Mono ', 'Cascadia Code PL Light', 'CaskaydiaCove Nerd Font Mono', 'Fira Code Light', 'SpaceMono Nerd Font Mono', 'Maple Mono', Consolas, 'Courier New', monospace",
     "terminal.integrated.fontSize": 14,
     "editor.fontFamily": "Cascadia Code PL Light, CaskaydiaCove Nerd Font Mono, Fira Code Light, Consolas, 'Courier New', monospace",
     "editor.inlineSuggest.enabled": true,
