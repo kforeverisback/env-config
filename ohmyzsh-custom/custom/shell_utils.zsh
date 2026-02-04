@@ -5,12 +5,12 @@
 alias mkdir='mkdir -pv'                    # Preferred 'mkdir' implementation
 #alias cp='cp -iv'                         # Preferred 'cp' implementation
 # Check whether --color=auto is available then add --color=auto or add -G
-if [[ $(alias ls) == *"eza"* ]] # We want to use eza instead of standard ls
-then
-  # If not found then lets use this
-  ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
-fi
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
+#if [[ $(alias ls) == *"eza"* ]] # We want to use eza instead of standard ls
+#then
+#  # If not found then lets use this
+#  ls --color=auto &> /dev/null && alias ls='ls --color=auto' || alias ls='ls -G'
+#fi
+#export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=31:cd=31:su=31:sg=31:tw=31:ow=31'
 alias less='less -FSRXc'                    # Preferred 'less' implementation
 #cd() { builtin cd "$@"; ll; }               # Always list directory contents upon 'cd'
 alias c='clear'                             # c:            Clear terminal display
@@ -45,12 +45,15 @@ alias vi='nvim'
 alias vimdiff='nvim -d'
 alias incognito=' unset HISTFILE'
 alias nohist=' unset HISTFILE'
-alias calc='kalker'
 
 ## Awesome Rusted Tools
 alias fd='fd -H'
 alias cat='bat' # Using the Bat tool instead of cat
+alias calc='kalker'
 
+# Unalias ls and ll
+# alias ls='eza'
+alias ll='eza -F -lh --color=auto --icons auto' # Preferred 'ls' implementation
 #alias ll='ls -Flh' # Preferred 'ls' implementation
 alias ps='procs' # https://github.com/dalance/procs
 alias top='btop' # CompNletion installed in ~/.oh-my-zsh/completions
@@ -122,8 +125,21 @@ function myip {
   curl -L ifconfig.me
 }
 
-function myhelp {
-    printf '%s\n' "${_k_help[@]}"
+function git-set-user {
+  local priv_email="${1}"
+  local priv_name="${2}"
+  [[ -z $priv_email ]] && echo "No email provided. Try $0 <email> <name>" && return 1
+  [[ -z $priv_name ]] && echo "No name provided. Try $0 <email> <name>" && return 1
+  echo "Setting authot/user email to $priv_email"
+  echo "setting author/user name  to Kushal Azim Ekram"
+  echo "Press any key to continue or Ctrl+C to exit."
+  read -n 1 -s
+  git config user.email   "$priv_email"
+  git config author.email "$priv_email"
+  git config author.mail  "$priv_email"
+  git config user.mail    "$priv_email"
+  git config user.name 'Kushal Azim Ekram'
+  git config author.name 'Kushal Azim Ekram'
 }
 
 function _extract_use_omz_extract_plugin {
@@ -187,6 +203,10 @@ function swap_filenames {
 [[ "${PATH#*:$HOME/.local/bin}" == "$PATH" ]] && export PATH="$PATH:$HOME/.local/bin"
 # Apparently enabling gnu-utils is not enough, so have to run hash -r to add gnu-utils alias
 # hash -r
+function myhelp {
+    printf '%s\n' "${_k_help[@]}"
+}
+
 _k_help+=("Enabled zsh Plugins ")
 _k_help+=("$(printf -- '    %s\n' ${plugins[@]})")
 _k_help+=("
@@ -198,11 +218,14 @@ Note Taking: nb/obsidian (GUI)
 Markdown tools: slides, marp, glow
 AI Tools: gemini, aider
 Helpful tools:
-  nb, ncdu, rmlint, stow(testing),ack, visidata, lazygit, tig, jq-stuff(jid, jqp, faq), ncat,
-  fd, bat, eza, procs, btop, btm, sd, mcfly, dust, kalker, catimg
-  toeki, tldr, gitui, grex, hyperfine, pueue, git-delta, zoxide
-  Trying new tools: systemctl-tui, systemd-manager-tui, gum, posting, fx(json), gping, ctop, caligula, dysk, netscanner, trippy, kmon,
-                    hx, skim, hexyl(hex editor), xh (httpie alt), zathura (doc viewer)
-                    navi(chstsh searchable)")
+  Tools (regular):
+    tig, lazygit, bat, fd, eza, btm, btop, dust, kalker, tldr, zoxide, git-delta
+  Tools (seldom):
+    nb, ncdu, rmlint, stow(testing), ack, visidata, jq-stuff(jid, jqp, faq), ncat, procs,
+    sd, catimg, toeki, gitui, grex, hyperfine, pueue
+  New tools:
+    systemctl-tui, systemd-manager-tui, gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
+    trippy, kmon, hx, skim, hexyl(hex editor), xh (httpie alt), zathura (doc viewer)
+    navi (cmd search)")
 echo "Check 'myhelp' for initialization notice"
 
