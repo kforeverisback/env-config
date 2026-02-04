@@ -130,16 +130,16 @@ function git-set-user {
   local priv_name="${2}"
   [[ -z $priv_email ]] && echo "No email provided. Try $0 <email> <name>" && return 1
   [[ -z $priv_name ]] && echo "No name provided. Try $0 <email> <name>" && return 1
-  echo "Setting authot/user email to $priv_email"
-  echo "setting author/user name  to Kushal Azim Ekram"
+  echo "Will set author/user email to $priv_email"
+  echo "         author/user name  to $priv_name"
   echo "Press any key to continue or Ctrl+C to exit."
-  read -n 1 -s
+  read -n 1
   git config user.email   "$priv_email"
   git config author.email "$priv_email"
   git config author.mail  "$priv_email"
   git config user.mail    "$priv_email"
-  git config user.name 'Kushal Azim Ekram'
-  git config author.name 'Kushal Azim Ekram'
+  git config user.name    "$priv_name"
+  git config author.name  "$priv_name"
 }
 
 function _extract_use_omz_extract_plugin {
