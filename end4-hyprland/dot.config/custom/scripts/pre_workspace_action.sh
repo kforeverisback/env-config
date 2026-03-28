@@ -11,6 +11,6 @@ fi
 if [[ "${curr_workspace}" -eq "$1" ]]; then
   hyprctl dispatch workspace previous
 else
-    # otherwise, switch to the target workspace with standard script from ~/.config/hypr/hyprland/keybinds.conf
-    exec ~/.config/hypr/hyprland/scripts/workspace_action.sh
+  # otherwise, switch to the target workspace with standard script from ~/.config/hypr/hyprland/keybinds.conf
+  exec ~/.config/hypr/hyprland/scripts/workspace_action.sh "$dispatcher" "$1"
 fi
