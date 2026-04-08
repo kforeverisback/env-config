@@ -219,13 +219,13 @@ Markdown tools: slides, marp, glow
 AI Tools: gemini, aider
 Helpful tools:
   Tools (regular):
-    tig, lazygit, bat, fd, eza, btm, btop, dust, kalker, tldr, zoxide, git-delta
+    tig, lazygit, bat, fd, eza, btm, btop, dust, duf, kalker, tldr, zoxide, git-delta
   Tools (seldom):
     nb, ncdu, rmlint, stow(testing), ack, visidata, jq-stuff(jid, jqp, faq), ncat, procs,
     sd, catimg, toeki, gitui, grex, hyperfine, pueue
   New tools:
-    systemctl-tui, systemd-manager-tui, gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
-    trippy, kmon, hx, skim, hexyl(hex editor), xh (httpie alt), zathura (doc viewer)
+    systemctl-tui, gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
+    trippy(trip), kmon, hx, skim, hexyl(hex editor), xh (httpie alt), zathura/papers (doc viewer)
     navi (cmd search)")
 echo "Check 'myhelp' for initialization notice"
 
