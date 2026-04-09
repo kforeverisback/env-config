@@ -224,7 +224,7 @@ Helpful tools:
     nb, ncdu, rmlint, stow(testing), ack, visidata, jq-stuff(jid, jqp, faq), ncat, procs,
     sd, catimg, toeki, gitui, grex, hyperfine, pueue
   New tools:
-    systemctl-tui, gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
+    sws(static-web-server), systemctl-tui, gum, posting, fx(json), gping, ctop, numbat(calc), caligula, dysk, netscanner,
     trippy(trip), kmon, hx, skim, hexyl(hex editor), xh (httpie alt), zathura/papers (doc viewer)
     navi (cmd search)")
 echo "Check 'myhelp' for initialization notice"
