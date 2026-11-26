@@ -21,7 +21,6 @@ eval "$(atuin init zsh --disable-up-arrow)"
 [[ -f /usr/share/doc/git-extras/git-extras-completion.zsh ]] && source /usr/share/doc/git-extras/git-extras-completion.zsh
 #
 #autoload -U +X bashcompinit && bashcompinit
-[[ -f /etc/bash-completion/completions/az ]] && source /etc/bash-completion/completions/az
 # ZShell Configuration
 # https://stackoverflow.com/questions/444951/zsh-stop-backward-kill-word-on-directory-delimiter
 autoload -U select-word-style
@@ -31,8 +30,14 @@ select-word-style bash
 # Useful for Docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-bindkey '^U' backward-kill-line
-bindkey '^Y' yank
+#bindkey '^U' backward-kill-line
+#bindkey '^Y' yank
+# Bind Alt+Left and Alt+Right
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
 
-export PATH=$PATH:$HOME/go/bin
+# If in VSCode don't init fastfetch
+if [[ -z $VSCODE_INJECTION ]] || [[ "$TERM_PROGRAM" != "vscode" ]]; then
+  command -v fastfetch &> /dev/null && fastfetch
+fi
 alias lg=lazygit

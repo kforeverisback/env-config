@@ -3,8 +3,8 @@
 plugins+=(
   sudo
   web-search
+  copypath
   copyfile
-  copybuffer
   #dirhistory
   gitfast
   git-commit-mod
@@ -12,20 +12,22 @@ plugins+=(
   git
   # git-commit   # Using my own version of git-cmmit 
   git-extras
-  copypath
   extract
-  history
+  #history
   cp
   colored-man-pages
   colorize
   docker
   eza
-  ssh-agent
-  github
-  # starship
+  starship
   zoxide
   zsh-autosuggestions
+  urltools
+  web-search
+  universalarchive
   fast-syntax-highlighting
+  podman
+  uv
 )
 # eza config
 zstyle ':omz:plugins:eza' 'dirs-first' yes
@@ -38,8 +40,14 @@ zstyle ':omz:update' mode auto
 # Disable MAGIC-FUNCTIONS (like url-auto-encode, bracket paste magic etc)
 DISABLE_MAGIC_FUNCTIONS=true
 # ssh-agent config
+if [[ "$TERM_PROGRAM" == "vscode" ]] || [[ -n "$SSH_CONNECTION" && -n "$SSH_TTY" ]]; then
+  echo "Skipping ssh agent init"
+else
+  # Commands for other terminals (e.g., iTerm, macOS Terminal)
+  plugins+=(ssh-agent)
+fi
 zstyle :omz:plugins:ssh-agent lifetime 3h
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
-zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms,mynatek}
+zstyle :omz:plugins:ssh-agent identities $HOME/.ssh/{id_rsa,github-key-ms}
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
